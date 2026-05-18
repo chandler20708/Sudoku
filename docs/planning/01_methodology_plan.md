@@ -2,30 +2,32 @@
 
 ## Research / Analysis Question
 
-TBD
+Can a transparent heuristic solver solve generated Sudoku puzzles more efficiently than plain recursive backtracking, and how does it compare with Gurobi MIP baselines?
 
 ## Descriptive Claims
 
-TBD
+Sudoku can be represented as a grid of row, column, and box constraints. Empty cells can be represented by candidate sets. Difficulty can be approximated for this project by clue count and observed search effort.
 
 ## Predictive Claims
 
-TBD
+The proposed heuristic should reduce search effort because it removes impossible candidates and branches on the most constrained cell.
 
 ## Causal Claims
 
-TBD
+Only modest causal claims are made: within this implementation, propagation and MRV reduce the number of branches compared with first-empty-cell backtracking. The benchmark is not large enough to generalise to all Sudoku distributions.
 
 ## Normative / Optimisation Claims
 
-TBD
+The selected heuristic is preferred for this project because it is transparent, reproducible, and aligned with the educational objective of demonstrating heuristic reasoning.
 
 ## Data Sources
 
 | Source | File / location | Observed variables | Limitations |
 |---|---|---|---|
-| TBD | TBD | TBD | TBD |
+| Generated puzzle set | `data/processed/generated_puzzles.csv` | puzzle, solution, clue count, difficulty label | Generated data may not represent public puzzle corpora. |
+| Benchmark results | `outputs/tables/benchmark_results.csv` | solver, solved status, time, decisions, backtracks, propagation metrics | Small sample of 20 puzzles. |
+| Literature notes | `docs/research_notes/2026-05-18_literature_and_source_notes.md` | source summary and method rationale | Small-scale review, not systematic review. |
 
 ## Validation Plan
 
-Define backtesting, robustness checks, sensitivity analysis, and leakage controls.
+Validation uses unit tests for uniqueness and solver correctness, plus benchmark reproduction. Solver outputs are checked as complete valid Sudoku grids. Baseline comparison uses completion, runtime, search effort, and complexity proxies.

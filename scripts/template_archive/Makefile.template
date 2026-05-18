@@ -1,4 +1,4 @@
-.PHONY: setup start latex-template sync check fmt test app latex clean tree cloc codex-task reset-generated
+.PHONY: setup start latex-template sync check fmt test app benchmark latex clean tree cloc codex-task reset-generated
 
 PYTHON := python3
 BOOTSTRAP := setup_project.py
@@ -50,6 +50,9 @@ fmt:
 
 test:
 	uv run pytest
+
+benchmark:
+	PYTHONPATH=src LC_ALL=C LANG=C uv run python scripts/run_benchmark.py
 
 app:
 	uv run streamlit run src/app/main.py

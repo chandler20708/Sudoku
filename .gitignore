@@ -6,14 +6,18 @@ __pycache__/
 .env
 
 data/raw/*
-!data/raw/.gitkeep
 data/interim/*
-!data/interim/.gitkeep
+data/external/*
 data/processed/*
-!data/processed/.gitkeep
+!data/processed/generated_puzzles.csv
 
 outputs/*
-!outputs/.gitkeep
+!outputs/figures/
+!outputs/figures/*.svg
+!outputs/reports/
+!outputs/reports/*.md
+!outputs/tables/
+!outputs/tables/*.csv
 
 *.aux
 *.bbl
@@ -26,3 +30,6 @@ outputs/*
 *.run.xml
 *.synctex.gz
 *.toc
+
+.pytest_cache/
+.ruff_cache/

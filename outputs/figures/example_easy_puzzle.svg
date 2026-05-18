@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="540" viewBox="0 0 520 540">
+<rect width="520" height="540" fill="white"/>
+<text x="260.0" y="25.0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Example easy puzzle</text>
+<g transform="translate(36,56)">
+<rect x="0" y="0" width="450" height="450" fill="#fbfbfb"/>
+<line x1="0.0" y1="0" x2="0.0" y2="450" stroke="black" stroke-width="3"/>
+<line x1="0" y1="0.0" x2="450" y2="0.0" stroke="black" stroke-width="3"/>
+<line x1="50.0" y1="0" x2="50.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="50.0" x2="450" y2="50.0" stroke="black" stroke-width="1"/>
+<line x1="100.0" y1="0" x2="100.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="100.0" x2="450" y2="100.0" stroke="black" stroke-width="1"/>
+<line x1="150.0" y1="0" x2="150.0" y2="450" stroke="black" stroke-width="3"/>
+<line x1="0" y1="150.0" x2="450" y2="150.0" stroke="black" stroke-width="3"/>
+<line x1="200.0" y1="0" x2="200.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="200.0" x2="450" y2="200.0" stroke="black" stroke-width="1"/>
+<line x1="250.0" y1="0" x2="250.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="250.0" x2="450" y2="250.0" stroke="black" stroke-width="1"/>
+<line x1="300.0" y1="0" x2="300.0" y2="450" stroke="black" stroke-width="3"/>
+<line x1="0" y1="300.0" x2="450" y2="300.0" stroke="black" stroke-width="3"/>
+<line x1="350.0" y1="0" x2="350.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="350.0" x2="450" y2="350.0" stroke="black" stroke-width="1"/>
+<line x1="400.0" y1="0" x2="400.0" y2="450" stroke="black" stroke-width="1"/>
+<line x1="0" y1="400.0" x2="450" y2="400.0" stroke="black" stroke-width="1"/>
+<line x1="450.0" y1="0" x2="450.0" y2="450" stroke="black" stroke-width="3"/>
+<line x1="0" y1="450.0" x2="450" y2="450.0" stroke="black" stroke-width="3"/>
+<text x="25.0" y="33.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">7</text>
+<text x="75.0" y="33.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="125.0" y="33.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">6</text>
+<text x="175.0" y="33.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">5</text>
+<text x="325.0" y="33.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="125.0" y="83.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">1</text>
+<text x="175.0" y="83.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">9</text>
+<text x="225.0" y="83.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="75.0" y="133.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">2</text>
+<text x="425.0" y="133.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">4</text>
+<text x="75.0" y="183.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="175.0" y="183.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">2</text>
+<text x="225.0" y="183.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">9</text>
+<text x="375.0" y="183.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="425.0" y="183.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">1</text>
+<text x="25.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">2</text>
+<text x="75.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">6</text>
+<text x="125.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">9</text>
+<text x="175.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="225.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">7</text>
+<text x="275.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">1</text>
+<text x="325.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">5</text>
+<text x="375.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">4</text>
+<text x="425.0" y="233.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="25.0" y="283.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="75.0" y="283.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">1</text>
+<text x="225.0" y="283.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">5</text>
+<text x="275.0" y="283.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="375.0" y="283.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">2</text>
+<text x="25.0" y="333.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">3</text>
+<text x="375.0" y="333.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">1</text>
+<text x="225.0" y="383.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="275.0" y="383.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">5</text>
+<text x="325.0" y="383.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">4</text>
+<text x="125.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">8</text>
+<text x="225.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">4</text>
+<text x="275.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">9</text>
+<text x="325.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">2</text>
+<text x="375.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">6</text>
+<text x="425.0" y="433.5" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">7</text>
+</g></svg>

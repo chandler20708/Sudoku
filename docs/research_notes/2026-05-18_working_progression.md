@@ -2,7 +2,7 @@
 
 ## Step 1: Project Setup
 
-The research template was copied into `/Users/chandler/Documents/Sudoku` and initialised with `make setup`. `uv sync` required permission because uv uses a cache outside the workspace.
+The research template was copied into `/Users/chandler/Documents/Sudoku` and initialised with its setup command. The template setup files were later moved to `scripts/template_archive/` so the active project tree stays focused on the Sudoku work.
 
 ## Step 2: Generator Repair
 
@@ -31,4 +31,3 @@ The benchmark generated 20 unique puzzles and ran 80 solver-puzzle combinations.
 ## Step 6: Report Writing
 
 The final report uses the benchmark results, literature notes, Mermaid architecture, SVG figures, and explicit limitations.
-

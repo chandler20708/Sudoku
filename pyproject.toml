@@ -4,38 +4,16 @@ version = "0.1.0"
 description = "Research project comparing heuristic Sudoku solving with programming and MIP baselines"
 requires-python = ">=3.11"
 dependencies = [
-    "polars>=1.0,<2.0",
-    "fastexcel>=0.12",
     "pandas>=2.2",
-    "pyarrow>=16",
-    "openpyxl>=3.1",
-    "xlsxwriter>=3.2",
-    "matplotlib>=3.8,<4.0",
-    "hvplot>=0.10",
-    "holoviews>=1.19",
-    "bokeh>=3.5",
-    "plotly>=5.24",
-    "streamlit>=1.40",
-    "simpy>=4.1,<5.0",
-    "gurobipy>=12.0",
-    "numpy>=1.26",
-    "scipy>=1.12",
-    "scikit-learn>=1.5",
-    "statsmodels>=0.14",
-    "joblib>=1.4",
-    "pydantic>=2.8",
-    "python-dotenv>=1.0",
-    "rich>=13.7",
+    "gurobipy>=13.0",
     "pytest>=8.0",
-    "ruff>=0.8",
-    "jupyterlab>=4.2",
-    "ipykernel>=6.29"
+    "ruff>=0.8"
 ]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-exclude = [".venv", "data", "outputs", "latex"]
+exclude = [".venv", "data", "outputs", "scripts/template_archive"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
