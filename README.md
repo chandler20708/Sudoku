@@ -41,6 +41,7 @@ The project is intentionally small and readable. Its purpose is to show understa
 | `recursive_backtracking` | Fill the first empty cell, try values, and backtrack when stuck. |
 | `heuristic_v1_constraint_mrv` | Candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. |
 | `heuristic_v2_adaptive_locked_sets` | Proposed V2. It probes whether locked candidates and naked triples reduce the candidate space enough, then uses the advanced path only when useful. |
+| `heuristic_v1_legacy_reference` | Standalone copy of the original V1-style code kept in `src/sudoku_heuristics/heuristic_v1_legacy.py` for audit and learning reference; not part of the main benchmark. |
 | `gurobi_default` | Binary MIP formulation solved by Gurobi default settings. |
 | `gurobi_heuristics` | Same MIP formulation with heuristic-oriented Gurobi settings. |
 
