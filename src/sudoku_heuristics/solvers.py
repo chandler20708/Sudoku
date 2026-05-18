@@ -1,9 +1,18 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from time import perf_counter
 
-from sudoku_heuristics.grid import ALL_DIGITS, CELLS, Grid, PEERS, UNITS, as_grid, is_complete_solution
+from sudoku_heuristics.grid import (
+    ALL_DIGITS,
+    CELLS,
+    PEERS,
+    UNITS,
+    Grid,
+    as_grid,
+    is_complete_solution,
+)
 
 
 @dataclass
@@ -25,7 +34,7 @@ def _timed_result(start: float, **kwargs: object) -> SolveStats:
     return SolveStats(elapsed_ms=(perf_counter() - start) * 1000, **kwargs)
 
 
-def solve_leetcode_backtracking(grid: Grid) -> SolveStats:
+def solve_leetcode_backtracking(grid: Grid, max_decisions: int = 200_000) -> SolveStats:
     start = perf_counter()
     rows = [list(row) for row in grid]
     stats = {"decisions": 0, "backtracks": 0, "max_depth": 0}
@@ -45,6 +54,8 @@ def solve_leetcode_backtracking(grid: Grid) -> SolveStats:
                 if rows[r][c] == 0:
                     for value in range(1, 10):
                         stats["decisions"] += 1
+                        if stats["decisions"] > max_decisions:
+                            raise TimeoutError("Decision budget exceeded.")
                         if allowed(r, c, value):
                             rows[r][c] = value
                             if dfs(depth + 1):
@@ -54,7 +65,18 @@ def solve_leetcode_backtracking(grid: Grid) -> SolveStats:
                     return False
         return True
 
-    solved = dfs()
+    try:
+        solved = dfs()
+    except TimeoutError:
+        return _timed_result(
+            start,
+            solver="leetcode_backtracking",
+            solved=False,
+            status="decision_budget_exceeded",
+            decisions=stats["decisions"],
+            backtracks=stats["backtracks"],
+            max_depth=stats["max_depth"],
+        )
     solution = as_grid(rows) if solved else None
     return _timed_result(
         start,
@@ -125,7 +147,7 @@ def _eliminate(
     return True
 
 
-def _naked_pairs(candidates: dict[tuple[int, int], set[int]], stats: dict[str, int]) -> bool:
+def _naked_pairs(candidates: dict[tuple[int, int], set[int]], stats: dict[str, int]) -> bool | None:
     changed = False
     for unit in UNITS:
         pairs: dict[tuple[int, int], list[tuple[int, int]]] = {}
@@ -146,7 +168,7 @@ def _naked_pairs(candidates: dict[tuple[int, int], set[int]], stats: dict[str, i
                     stats["eliminations"] += removed
                     changed = True
                 if not candidates[cell]:
-                    return False
+                    return None
     return changed
 
 
@@ -161,7 +183,7 @@ def _propagate(candidates: dict[tuple[int, int], set[int]], stats: dict[str, int
                     if not _eliminate(candidates, peer, value, stats):
                         return False
         naked_pair_result = _naked_pairs(candidates, stats)
-        if naked_pair_result is False:
+        if naked_pair_result is None:
             return False
         after = sum(len(v) for v in candidates.values())
         changed = after < before
@@ -221,6 +243,8 @@ def solve_proposed_heuristic(grid: Grid) -> SolveStats:
 
 def solve_gurobi(grid: Grid, mode: str = "default", time_limit: float = 5.0) -> SolveStats:
     start = perf_counter()
+    os.environ.setdefault("LC_ALL", "C")
+    os.environ.setdefault("LANG", "C")
     try:
         import gurobipy as gp
         from gurobipy import GRB
@@ -280,4 +304,3 @@ def solve_gurobi(grid: Grid, mode: str = "default", time_limit: float = 5.0) -> 
         )
     except Exception as exc:  # pragma: no cover - license/environment dependent
         return _timed_result(start, solver=f"gurobi_{mode}", solved=False, status="error", notes=[str(exc)])
-

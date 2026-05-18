@@ -1,7 +1,7 @@
 [project]
-name = "ra-project"
+name = "sudoku-heuristics-project"
 version = "0.1.0"
-description = "Research assistant project workspace"
+description = "Research project comparing heuristic Sudoku solving with programming and MIP baselines"
 requires-python = ">=3.11"
 dependencies = [
     "polars>=1.0,<2.0",
@@ -44,3 +44,4 @@ ignore = ["E501"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+pythonpath = ["src"]

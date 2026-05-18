@@ -8,13 +8,13 @@ ROWS = range(9)
 COLS = range(9)
 CELLS = tuple((r, c) for r in ROWS for c in COLS)
 UNITS: tuple[tuple[tuple[int, int], ...], ...] = (
-    tuple((r, c) for c in COLS) for r in ROWS
-) + (
-    tuple((r, c) for r in ROWS) for c in COLS
-) + (
-    tuple((r, c) for r in range(br, br + 3) for c in range(bc, bc + 3))
-    for br in range(0, 9, 3)
-    for bc in range(0, 9, 3)
+    tuple(tuple((r, c) for c in COLS) for r in ROWS)
+    + tuple(tuple((r, c) for r in ROWS) for c in COLS)
+    + tuple(
+        tuple((r, c) for r in range(br, br + 3) for c in range(bc, bc + 3))
+        for br in range(0, 9, 3)
+        for bc in range(0, 9, 3)
+    )
 )
 PEERS = {
     cell: frozenset(other for unit in UNITS if cell in unit for other in unit if other != cell)
@@ -91,4 +91,3 @@ def markdown_grid(grid: Grid) -> str:
         vals = [str(v) if v else "." for v in row]
         lines.append(f"|{i}|" + "|".join(vals) + "|")
     return "\n".join(lines)
-

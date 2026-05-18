@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import csv
-from dataclasses import asdict
 from pathlib import Path
 
 from sudoku_heuristics.generator import PuzzleRecord, generate_dataset
@@ -71,4 +70,3 @@ def write_benchmark(rows: list[dict[str, object]], path: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
-
