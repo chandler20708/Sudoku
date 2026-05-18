@@ -8,16 +8,18 @@ from sudoku_heuristics.grid import Grid
 
 SOLVER_LABELS = {
     "recursive_backtracking": "Plain recursive",
-    "proposed_heuristic": "Proposed heuristic",
+    "heuristic_v1_constraint_mrv": "Heuristic V1: propagation + MRV",
+    "heuristic_v2_adaptive_locked_sets": "Proposed V2: adaptive locked sets",
     "gurobi_default": "Gurobi default",
-    "gurobi_heuristics": "Gurobi heuristic",
+    "gurobi_heuristics": "Gurobi heuristic mode",
 }
 SOLVER_ORDER = list(SOLVER_LABELS)
 COLORS = {
     "recursive_backtracking": "#7f8c8d",
-    "proposed_heuristic": "#1f77b4",
-    "gurobi_default": "#2ca02c",
-    "gurobi_heuristics": "#d62728",
+    "heuristic_v1_constraint_mrv": "#4c78a8",
+    "heuristic_v2_adaptive_locked_sets": "#f58518",
+    "gurobi_default": "#54a24b",
+    "gurobi_heuristics": "#b279a2",
 }
 
 
@@ -69,19 +71,19 @@ def _bar_chart(
 ) -> None:
     difficulties = ["easy", "medium", "hard", "expert"]
     solvers = [solver for solver in SOLVER_ORDER if solver in set(data["solver"])]
-    width, height = 1080, 520
-    left, top, plot_w, plot_h = 82, 55, 760, 330
-    legend_x, legend_y = 875, 88
+    width, height = 1280, 560
+    left, top, plot_w, plot_h = 82, 58, 820, 342
+    legend_x, legend_y = 940, 92
     max_value = cap if cap is not None else max(float(data[value_col].max()), 1.0)
     group_w = plot_w / len(difficulties)
-    bar_w = min(24, group_w / (len(solvers) + 1))
+    bar_w = min(25, group_w / (len(solvers) + 1))
     body = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
-        _svg_text(width / 2, 28, title, 18),
+        _svg_text(width / 2, 30, title, 18),
         f'<line x1="{left}" y1="{top + plot_h}" x2="{left + plot_w}" y2="{top + plot_h}" stroke="black"/>',
         f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_h}" stroke="black"/>',
-        _svg_text(18, top + plot_h / 2, ylabel, 12, "middle").replace("<text", '<text transform="rotate(-90 18 220)"'),
+        _svg_text(18, top + plot_h / 2, ylabel, 12, "middle").replace("<text", '<text transform="rotate(-90 18 230)"'),
     ]
     for tick in range(5):
         value = max_value * tick / 4
@@ -104,10 +106,11 @@ def _bar_chart(
                 f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w - 3:.1f}" height="{h:.1f}" '
                 f'fill="{COLORS.get(solver, "#444")}"><title>{label}: {value:.3f}</title></rect>'
             )
-    body.append(f'<rect x="{legend_x - 18}" y="{legend_y - 28}" width="185" height="112" fill="#fff" stroke="#ddd"/>')
-    body.append(_svg_text(legend_x, legend_y - 8, "Solver", 12, "start"))
+    legend_h = 38 + len(solvers) * 25
+    body.append(f'<rect x="{legend_x - 18}" y="{legend_y - 30}" width="315" height="{legend_h}" fill="#fff" stroke="#ddd"/>')
+    body.append(_svg_text(legend_x, legend_y - 9, "Solver", 12, "start"))
     for j, solver in enumerate(solvers):
-        y = legend_y + 18 + j * 22
+        y = legend_y + 20 + j * 25
         body.append(f'<rect x="{legend_x}" y="{y - 11}" width="13" height="13" fill="{COLORS.get(solver, "#444")}"/>')
         body.append(_svg_text(legend_x + 21, y, SOLVER_LABELS.get(solver, solver), 12, "start"))
     body.append("</svg>")

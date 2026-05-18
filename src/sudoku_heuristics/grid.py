@@ -3,21 +3,24 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 Grid = tuple[tuple[int, ...], ...]
+Cell = tuple[int, int]
 ALL_DIGITS = frozenset(range(1, 10))
 ROWS = range(9)
 COLS = range(9)
 CELLS = tuple((r, c) for r in ROWS for c in COLS)
-UNITS: tuple[tuple[tuple[int, int], ...], ...] = (
-    tuple(tuple((r, c) for c in COLS) for r in ROWS)
-    + tuple(tuple((r, c) for r in ROWS) for c in COLS)
-    + tuple(
-        tuple((r, c) for r in range(br, br + 3) for c in range(bc, bc + 3))
-        for br in range(0, 9, 3)
-        for bc in range(0, 9, 3)
-    )
+ROW_UNITS: tuple[tuple[Cell, ...], ...] = tuple(tuple((r, c) for c in COLS) for r in ROWS)
+COL_UNITS: tuple[tuple[Cell, ...], ...] = tuple(tuple((r, c) for r in ROWS) for c in COLS)
+BOX_UNITS: tuple[tuple[Cell, ...], ...] = tuple(
+    tuple((r, c) for r in range(br, br + 3) for c in range(bc, bc + 3))
+    for br in range(0, 9, 3)
+    for bc in range(0, 9, 3)
 )
+UNITS: tuple[tuple[Cell, ...], ...] = ROW_UNITS + COL_UNITS + BOX_UNITS
+UNITS_BY_CELL: dict[Cell, tuple[tuple[Cell, ...], ...]] = {
+    cell: tuple(unit for unit in UNITS if cell in unit) for cell in CELLS
+}
 PEERS = {
-    cell: frozenset(other for unit in UNITS if cell in unit for other in unit if other != cell)
+    cell: frozenset(other for unit in UNITS_BY_CELL[cell] for other in unit if other != cell)
     for cell in CELLS
 }
 

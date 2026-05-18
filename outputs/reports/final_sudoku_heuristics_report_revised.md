@@ -8,7 +8,7 @@
 
 This project uses Sudoku as a compact constraint satisfaction problem. The point is not that Sudoku is the hardest optimisation problem; the point is that Sudoku makes search, constraints, and heuristic design easy to inspect.
 
-The final proposed method is **Heuristic V2: adaptive locked sets**. It starts from a transparent V1 solver based on candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. V2 then adds a small decision rule: it tests whether locked candidates and naked triples meaningfully shrink the candidate space. If they do, V2 uses the advanced path with a degree tie-breaker; if they do not, it keeps the faster V1 core.
+The final proposed method is **Heuristic V2: adaptive locked sets**. It starts from a transparent V1 solver based on candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. V2 then adds an adaptive escalation rule: it checks whether more advanced propagation methods, specifically locked candidates and naked triples, reduce uncertainty enough to justify their computational cost. If they do, V2 switches to an advanced search path with a degree tie-breaker; if they do not, it falls back to the faster V1 core. In the current benchmark, V1 remains the strongest practical custom solver overall because its lower reasoning overhead produces faster solve times on most puzzles.
 
 On the generated benchmark set of **40 unique Sudoku puzzles**, V2 solved **40/40**. Plain recursive backtracking solved **36/40** under a 200,000-decision cap. Gurobi default and Gurobi with heuristic-focused parameters both solved **40/40**. On expert puzzles, V2 reduced median decisions from **2** in V1 to **1**, and median backtracks from **1** to **0**, but it was slower than V1 because it spends extra time checking whether advanced propagation is worthwhile.
 
@@ -97,7 +97,7 @@ flowchart TD
     M --> D
 ```
 
-The important idea is not that V2 always uses every advanced rule. The important idea is adaptive escalation: use extra reasoning when it actually reduces uncertainty.
+The important idea is not that V2 always uses every advanced rule. The main design consideration of V2 is adaptive escalation: advanced propagation should only be used when the expected reduction in uncertainty is large enough to justify the additional computational overhead. In practice, the current benchmark shows that V1 is still the better overall practical solver because it achieves similar solution quality with lower runtime cost on most puzzles.
 
 ## 6. Difficulty Definition
 
@@ -208,7 +208,7 @@ The proposed heuristic performs well because it uses the structure of Sudoku. In
 
 Plain recursive backtracking is simple but weak. It solves easier puzzles, but hard and expert cases can push it into many unproductive branches.
 
-V1 is the fastest custom solver on this small generated set because it does less reasoning overhead. V2 is the better research contribution because it demonstrates adaptive heuristic design: it can use more advanced candidate logic when that reduces search effort, while avoiding that path on cases such as AI Escargot where the probe says the extra rules are not worth it.
+V1 is currently the strongest practical custom solver on this benchmark because it achieves very fast solve times with relatively simple reasoning rules. V2 is slower because it spends additional time evaluating whether advanced propagation should be activated. However, V2 remains the more interesting research contribution because it introduces adaptive heuristic escalation: the solver explicitly weighs the trade-off between additional reasoning cost and expected search reduction. This allows V2 to reduce decisions and backtracks on harder puzzles while still avoiding unnecessary advanced propagation on cases where the extra rules are not worthwhile.
 
 Gurobi is reliable. It solves the binary MIP formulation cleanly. However, Sudoku is tiny, and converting it into a MIP model has overhead. For a single 9 by 9 puzzle, a custom heuristic can be faster and easier to explain.
 

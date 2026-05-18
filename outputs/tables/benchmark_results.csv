@@ -1,161 +1,201 @@
 puzzle_id,difficulty,difficulty_score,clues,solver,solved,elapsed_ms,decisions,backtracks,assignments,eliminations,max_depth,status,notes
-easy_01,easy,74.655,40,recursive_backtracking,True,1.483541,1623,157,0,0,41,ok,
-easy_01,easy,74.655,40,proposed_heuristic,True,0.703833,0,0,112,42,0,ok,
-easy_01,easy,74.655,40,gurobi_default,True,24.129459,0,0,0,0,0,2,runtime=0.000919s
-easy_01,easy,74.655,40,gurobi_heuristics,True,4.768125,0,0,0,0,0,2,runtime=0.000789s
-easy_02,easy,76.906,40,recursive_backtracking,True,1.81425,1936,192,0,0,41,ok,
-easy_02,easy,76.906,40,proposed_heuristic,True,0.779875,0,0,126,52,0,ok,
-easy_02,easy,76.906,40,gurobi_default,True,4.490125,0,0,0,0,0,2,runtime=0.000718s
-easy_02,easy,76.906,40,gurobi_heuristics,True,4.927791,0,0,0,0,0,2,runtime=0.000815s
-easy_03,easy,77.357,40,recursive_backtracking,True,0.665042,637,47,0,0,41,ok,
-easy_03,easy,77.357,40,proposed_heuristic,True,0.81975,0,0,146,54,0,ok,
-easy_03,easy,77.357,40,gurobi_default,True,4.93925,0,0,0,0,0,2,runtime=0.000731s
-easy_03,easy,77.357,40,gurobi_heuristics,True,4.600708,0,0,0,0,0,2,runtime=0.000658s
-easy_04,easy,78.257,40,recursive_backtracking,True,0.788667,810,66,0,0,41,ok,
-easy_04,easy,78.257,40,proposed_heuristic,True,0.80675,0,0,152,58,0,ok,
-easy_04,easy,78.257,40,gurobi_default,True,4.491584,0,0,0,0,0,2,runtime=0.000757s
-easy_04,easy,78.257,40,gurobi_heuristics,True,4.865584,0,0,0,0,0,2,runtime=0.000818s
-easy_05,easy,78.707,40,recursive_backtracking,True,1.341292,1510,145,0,0,41,ok,
-easy_05,easy,78.707,40,proposed_heuristic,True,0.809417,0,0,143,60,0,ok,
-easy_05,easy,78.707,40,gurobi_default,True,4.75975,0,0,0,0,0,2,runtime=0.000702s
-easy_05,easy,78.707,40,gurobi_heuristics,True,4.335,0,0,0,0,0,2,runtime=0.000671s
-easy_06,easy,80.032,40,recursive_backtracking,True,1.51475,1598,154,0,0,41,ok,
-easy_06,easy,80.032,40,proposed_heuristic,True,0.786667,0,0,142,57,0,ok,
-easy_06,easy,80.032,40,gurobi_default,True,4.367958,0,0,0,0,0,2,runtime=0.000680s
-easy_06,easy,80.032,40,gurobi_heuristics,True,4.400167,0,0,0,0,0,2,runtime=0.000680s
-easy_07,easy,80.932,40,recursive_backtracking,True,1.860208,1842,181,0,0,41,ok,
-easy_07,easy,80.932,40,proposed_heuristic,True,0.824792,0,0,162,61,0,ok,
-easy_07,easy,80.932,40,gurobi_default,True,4.843541,0,0,0,0,0,2,runtime=0.000953s
-easy_07,easy,80.932,40,gurobi_heuristics,True,5.178208,0,0,0,0,0,2,runtime=0.000872s
-easy_08,easy,81.158,40,recursive_backtracking,True,0.366833,303,10,0,0,41,ok,
-easy_08,easy,81.158,40,proposed_heuristic,True,0.799417,0,0,150,62,0,ok,
-easy_08,easy,81.158,40,gurobi_default,True,5.426125,0,0,0,0,0,2,runtime=0.000865s
-easy_08,easy,81.158,40,gurobi_heuristics,True,4.991333,0,0,0,0,0,2,runtime=0.000811s
-easy_09,easy,81.383,40,recursive_backtracking,True,0.661375,668,51,0,0,41,ok,
-easy_09,easy,81.383,40,proposed_heuristic,True,0.822625,0,0,141,63,0,ok,
-easy_09,easy,81.383,40,gurobi_default,True,4.883417,0,0,0,0,0,2,runtime=0.000911s
-easy_09,easy,81.383,40,gurobi_heuristics,True,4.7985,0,0,0,0,0,2,runtime=0.000792s
-easy_10,easy,82.534,40,recursive_backtracking,True,0.500667,466,28,0,0,41,ok,
-easy_10,easy,82.534,40,proposed_heuristic,True,0.903625,0,0,154,77,0,ok,
-easy_10,easy,82.534,40,gurobi_default,True,5.055542,0,0,0,0,0,2,runtime=0.000816s
-easy_10,easy,82.534,40,gurobi_heuristics,True,4.721416,0,0,0,0,0,2,runtime=0.000758s
-medium_01,medium,88.815,34,recursive_backtracking,True,2.715375,2567,260,0,0,47,ok,
-medium_01,medium,88.815,34,proposed_heuristic,True,0.877792,0,0,184,72,0,ok,
-medium_01,medium,88.815,34,gurobi_default,True,4.637875,0,0,0,0,0,2,runtime=0.000787s
-medium_01,medium,88.815,34,gurobi_heuristics,True,4.815167,0,0,0,0,0,2,runtime=0.000859s
-medium_02,medium,91.418,34,recursive_backtracking,True,1.7255,1855,180,0,0,47,ok,
-medium_02,medium,91.418,34,proposed_heuristic,True,0.94525,0,0,164,85,0,ok,
-medium_02,medium,91.418,34,gurobi_default,True,4.706459,0,0,0,0,0,2,runtime=0.000751s
-medium_02,medium,91.418,34,gurobi_heuristics,True,4.528459,0,0,0,0,0,2,runtime=0.000696s
-medium_03,medium,92.219,34,recursive_backtracking,True,1.830542,1862,181,0,0,47,ok,
-medium_03,medium,92.219,34,proposed_heuristic,True,0.971417,0,0,181,89,0,ok,
-medium_03,medium,92.219,34,gurobi_default,True,4.719542,0,0,0,0,0,2,runtime=0.000856s
-medium_03,medium,92.219,34,gurobi_heuristics,True,4.827416,0,0,0,0,0,2,runtime=0.000788s
-medium_04,medium,94.221,34,recursive_backtracking,True,1.172584,1248,114,0,0,47,ok,
-medium_04,medium,94.221,34,proposed_heuristic,True,1.0105,0,0,199,99,0,ok,
-medium_04,medium,94.221,34,gurobi_default,True,4.715916,0,0,0,0,0,2,runtime=0.000780s
-medium_04,medium,94.221,34,gurobi_heuristics,True,4.509875,0,0,0,0,0,2,runtime=0.000700s
-medium_05,medium,94.421,34,recursive_backtracking,True,17.855916,18816,2062,0,0,47,ok,
-medium_05,medium,94.421,34,proposed_heuristic,True,1.111167,0,0,172,100,0,ok,
-medium_05,medium,94.421,34,gurobi_default,True,4.725875,0,0,0,0,0,2,runtime=0.000768s
-medium_05,medium,94.421,34,gurobi_heuristics,True,4.378959,0,0,0,0,0,2,runtime=0.000702s
-medium_06,medium,96.019,34,recursive_backtracking,True,1.608792,1697,162,0,0,47,ok,
-medium_06,medium,96.019,34,proposed_heuristic,True,0.933041,0,0,179,88,0,ok,
-medium_06,medium,96.019,34,gurobi_default,True,4.716709,0,0,0,0,0,2,runtime=0.000717s
-medium_06,medium,96.019,34,gurobi_heuristics,True,4.31925,0,0,0,0,0,2,runtime=0.000683s
-medium_07,medium,96.023,34,recursive_backtracking,True,31.850166,36080,3983,0,0,47,ok,
-medium_07,medium,96.023,34,proposed_heuristic,True,1.087334,0,0,187,108,0,ok,
-medium_07,medium,96.023,34,gurobi_default,True,4.904875,0,0,0,0,0,2,runtime=0.000817s
-medium_07,medium,96.023,34,gurobi_heuristics,True,4.533417,0,0,0,0,0,2,runtime=0.000729s
-medium_08,medium,97.222,34,recursive_backtracking,True,3.630292,4163,438,0,0,47,ok,
-medium_08,medium,97.222,34,proposed_heuristic,True,1.117792,0,0,170,104,0,ok,
-medium_08,medium,97.222,34,gurobi_default,True,4.56775,0,0,0,0,0,2,runtime=0.000855s
-medium_08,medium,97.222,34,gurobi_heuristics,True,4.397667,0,0,0,0,0,2,runtime=0.000713s
-medium_09,medium,97.222,34,recursive_backtracking,True,4.598084,4883,517,0,0,47,ok,
-medium_09,medium,97.222,34,proposed_heuristic,True,1.007166,0,0,172,104,0,ok,
-medium_09,medium,97.222,34,gurobi_default,True,4.465333,0,0,0,0,0,2,runtime=0.000773s
-medium_09,medium,97.222,34,gurobi_heuristics,True,4.525125,0,0,0,0,0,2,runtime=0.000772s
-medium_10,medium,97.623,34,recursive_backtracking,True,2.854792,3027,309,0,0,47,ok,
-medium_10,medium,97.623,34,proposed_heuristic,True,1.043583,0,0,198,106,0,ok,
-medium_10,medium,97.623,34,gurobi_default,True,4.665333,0,0,0,0,0,2,runtime=0.000802s
-medium_10,medium,97.623,34,gurobi_heuristics,True,5.349417,0,0,0,0,0,2,runtime=0.000792s
-hard_01,hard,99.568,30,recursive_backtracking,True,36.269959,34666,3823,0,0,51,ok,
-hard_01,hard,99.568,30,proposed_heuristic,True,1.34925,0,0,228,109,0,ok,
-hard_01,hard,99.568,30,gurobi_default,True,8.195667,0,0,0,0,0,2,runtime=0.000934s
-hard_01,hard,99.568,30,gurobi_heuristics,True,6.321208,0,0,0,0,0,2,runtime=0.000913s
-hard_02,hard,105.132,28,recursive_backtracking,True,107.080291,115428,12796,0,0,53,ok,
-hard_02,hard,105.132,28,proposed_heuristic,True,1.084167,0,0,246,119,0,ok,
-hard_02,hard,105.132,28,gurobi_default,True,4.982291,0,0,0,0,0,2,runtime=0.000964s
-hard_02,hard,105.132,28,gurobi_heuristics,True,4.499,0,0,0,0,0,2,runtime=0.000784s
-hard_03,hard,105.856,28,recursive_backtracking,True,16.417667,17269,1889,0,0,53,ok,
-hard_03,hard,105.856,28,proposed_heuristic,True,1.057791,0,0,227,123,0,ok,
-hard_03,hard,105.856,28,gurobi_default,True,4.503875,0,0,0,0,0,2,runtime=0.000761s
-hard_03,hard,105.856,28,gurobi_heuristics,True,4.799458,0,0,0,0,0,2,runtime=0.000862s
-hard_04,hard,105.856,28,recursive_backtracking,True,2.2945,2362,233,0,0,53,ok,
-hard_04,hard,105.856,28,proposed_heuristic,True,1.136666,0,0,231,123,0,ok,
-hard_04,hard,105.856,28,gurobi_default,True,4.700583,0,0,0,0,0,2,runtime=0.000761s
-hard_04,hard,105.856,28,gurobi_heuristics,True,4.3285,0,0,0,0,0,2,runtime=0.000705s
-hard_05,hard,106.037,28,recursive_backtracking,True,16.747,18172,1988,0,0,53,ok,
-hard_05,hard,106.037,28,proposed_heuristic,True,1.274791,0,0,231,124,0,ok,
-hard_05,hard,106.037,28,gurobi_default,True,4.641041,0,0,0,0,0,2,runtime=0.000869s
-hard_05,hard,106.037,28,gurobi_heuristics,True,4.788833,0,0,0,0,0,2,runtime=0.000773s
-hard_06,hard,106.228,28,recursive_backtracking,True,1.833625,1815,172,0,0,53,ok,
-hard_06,hard,106.228,28,proposed_heuristic,True,1.072541,0,0,225,114,0,ok,
-hard_06,hard,106.228,28,gurobi_default,True,4.8735,0,0,0,0,0,2,runtime=0.000964s
-hard_06,hard,106.228,28,gurobi_heuristics,True,4.621458,0,0,0,0,0,2,runtime=0.000726s
-hard_07,hard,106.399,28,recursive_backtracking,True,44.03475,49180,5435,0,0,53,ok,
-hard_07,hard,106.399,28,proposed_heuristic,True,1.159333,0,0,222,126,0,ok,
-hard_07,hard,106.399,28,gurobi_default,True,4.772833,0,0,0,0,0,2,runtime=0.000831s
-hard_07,hard,106.399,28,gurobi_heuristics,True,4.814166,0,0,0,0,0,2,runtime=0.000877s
-hard_08,hard,107.304,28,recursive_backtracking,True,45.682792,48496,5360,0,0,53,ok,
-hard_08,hard,107.304,28,proposed_heuristic,True,1.169041,0,0,207,131,0,ok,
-hard_08,hard,107.304,28,gurobi_default,True,4.959542,0,0,0,0,0,2,runtime=0.000901s
-hard_08,hard,107.304,28,gurobi_heuristics,True,4.395,0,0,0,0,0,2,runtime=0.000776s
-hard_09,hard,108.751,28,recursive_backtracking,True,30.361583,33126,3648,0,0,53,ok,
-hard_09,hard,108.751,28,proposed_heuristic,True,1.269041,0,0,231,139,0,ok,
-hard_09,hard,108.751,28,gurobi_default,True,4.734084,0,0,0,0,0,2,runtime=0.000719s
-hard_09,hard,108.751,28,gurobi_heuristics,True,4.305916,0,0,0,0,0,2,runtime=0.000713s
-hard_10,hard,109.294,28,recursive_backtracking,False,184.903125,200001,22214,0,0,39,decision_budget_exceeded,
-hard_10,hard,109.294,28,proposed_heuristic,True,1.382667,0,0,211,142,0,ok,
-hard_10,hard,109.294,28,gurobi_default,True,4.640834,0,0,0,0,0,2,runtime=0.000835s
-hard_10,hard,109.294,28,gurobi_heuristics,True,4.457625,0,0,0,0,0,2,runtime=0.000741s
-expert_01,expert,110.208,28,recursive_backtracking,False,196.810625,200001,22208,0,0,48,decision_budget_exceeded,
-expert_01,expert,110.208,28,proposed_heuristic,True,1.170458,0,0,227,136,0,ok,
-expert_01,expert,110.208,28,gurobi_default,True,4.712958,0,0,0,0,0,2,runtime=0.000886s
-expert_01,expert,110.208,28,gurobi_heuristics,True,4.430542,0,0,0,0,0,2,runtime=0.000754s
-expert_02,expert,115.315,24,recursive_backtracking,True,134.2665,141311,15669,0,0,57,ok,
-expert_02,expert,115.315,24,proposed_heuristic,True,1.303875,0,0,269,158,0,ok,
-expert_02,expert,115.315,24,gurobi_default,True,4.941958,0,0,0,0,0,2,runtime=0.000944s
-expert_02,expert,115.315,24,gurobi_heuristics,True,4.454125,0,0,0,0,0,2,runtime=0.000791s
-expert_03,expert,120.265,26,recursive_backtracking,True,6.545167,6917,738,0,0,55,ok,
-expert_03,expert,120.265,26,proposed_heuristic,True,1.457958,1,0,219,144,1,ok,
-expert_03,expert,120.265,26,gurobi_default,True,4.593542,0,0,0,0,0,2,runtime=0.000948s
-expert_03,expert,120.265,26,gurobi_heuristics,True,4.873458,0,0,0,0,0,2,runtime=0.000947s
-expert_04,expert,126.897,26,recursive_backtracking,False,180.741584,200001,22208,0,0,49,decision_budget_exceeded,
-expert_04,expert,126.897,26,proposed_heuristic,True,1.4075,1,0,210,159,1,ok,
-expert_04,expert,126.897,26,gurobi_default,True,16.678959,0,0,0,0,0,2,runtime=0.001093s
-expert_04,expert,126.897,26,gurobi_heuristics,True,5.096334,0,0,0,0,0,2,runtime=0.001036s
-expert_05,expert,133.904,28,recursive_backtracking,True,20.265333,21657,2377,0,0,53,ok,
-expert_05,expert,133.904,28,proposed_heuristic,True,1.539125,2,1,218,151,1,ok,
-expert_05,expert,133.904,28,gurobi_default,True,4.783167,0,0,0,0,0,2,runtime=0.000876s
-expert_05,expert,133.904,28,gurobi_heuristics,True,4.418833,0,0,0,0,0,2,runtime=0.000776s
-expert_06,expert,134.126,28,recursive_backtracking,True,157.957167,168180,18658,0,0,53,ok,
-expert_06,expert,134.126,28,proposed_heuristic,True,1.608584,2,1,308,210,1,ok,
-expert_06,expert,134.126,28,gurobi_default,True,5.829083,0,0,0,0,0,2,runtime=0.001841s
-expert_06,expert,134.126,28,gurobi_heuristics,True,5.905167,0,0,0,0,0,2,runtime=0.001866s
-expert_07,expert,137.444,26,recursive_backtracking,True,51.598958,52202,5768,0,0,55,ok,
-expert_07,expert,137.444,26,proposed_heuristic,True,1.701292,2,1,351,236,1,ok,
-expert_07,expert,137.444,26,gurobi_default,True,5.035042,0,0,0,0,0,2,runtime=0.001108s
-expert_07,expert,137.444,26,gurobi_heuristics,True,5.053458,0,0,0,0,0,2,runtime=0.001047s
-expert_08,expert,141.356,28,recursive_backtracking,True,64.560041,66751,7387,0,0,53,ok,
-expert_08,expert,141.356,28,proposed_heuristic,True,1.668125,3,1,220,151,2,ok,
-expert_08,expert,141.356,28,gurobi_default,True,4.990917,0,0,0,0,0,2,runtime=0.000959s
-expert_08,expert,141.356,28,gurobi_heuristics,True,4.770333,0,0,0,0,0,2,runtime=0.000858s
-expert_09,expert,193.937,27,recursive_backtracking,True,25.271125,28436,3131,0,0,54,ok,
-expert_09,expert,193.937,27,proposed_heuristic,True,2.105584,7,3,339,249,4,ok,
-expert_09,expert,193.937,27,gurobi_default,True,5.818791,0,0,0,0,0,2,runtime=0.001685s
-expert_09,expert,193.937,27,gurobi_heuristics,True,5.69125,0,0,0,0,0,2,runtime=0.001744s
-expert_10,expert,218.741,24,recursive_backtracking,False,187.215417,200001,22215,0,0,49,decision_budget_exceeded,
-expert_10,expert,218.741,24,proposed_heuristic,True,3.305209,6,7,444,402,3,ok,
-expert_10,expert,218.741,24,gurobi_default,True,4.828542,0,0,0,0,0,2,runtime=0.000875s
-expert_10,expert,218.741,24,gurobi_heuristics,True,4.830292,0,0,0,0,0,2,runtime=0.000855s
+easy_01,easy,74.655,40,recursive_backtracking,True,1.511208,1623,157,0,0,41,ok,
+easy_01,easy,74.655,40,heuristic_v1_constraint_mrv,True,0.587459,0,0,112,42,0,ok,
+easy_01,easy,74.655,40,heuristic_v2_adaptive_locked_sets,True,1.518917,0,0,112,42,0,ok,mode=core
+easy_01,easy,74.655,40,gurobi_default,True,40.019417,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000907s
+easy_01,easy,74.655,40,gurobi_heuristics,True,4.580875,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000686s
+easy_02,easy,76.906,40,recursive_backtracking,True,1.914917,1936,192,0,0,41,ok,
+easy_02,easy,76.906,40,heuristic_v1_constraint_mrv,True,0.668041,0,0,126,52,0,ok,
+easy_02,easy,76.906,40,heuristic_v2_adaptive_locked_sets,True,1.585625,0,0,126,52,0,ok,mode=core
+easy_02,easy,76.906,40,gurobi_default,True,5.123291,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000897s
+easy_02,easy,76.906,40,gurobi_heuristics,True,5.11375,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000853s
+easy_03,easy,77.357,40,recursive_backtracking,True,0.721541,637,47,0,0,41,ok,
+easy_03,easy,77.357,40,heuristic_v1_constraint_mrv,True,0.654791,0,0,146,54,0,ok,
+easy_03,easy,77.357,40,heuristic_v2_adaptive_locked_sets,True,1.625,0,0,146,54,0,ok,mode=core
+easy_03,easy,77.357,40,gurobi_default,True,4.795417,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000803s
+easy_03,easy,77.357,40,gurobi_heuristics,True,4.696292,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000792s
+easy_04,easy,78.257,40,recursive_backtracking,True,0.862125,810,66,0,0,41,ok,
+easy_04,easy,78.257,40,heuristic_v1_constraint_mrv,True,0.76925,0,0,152,58,0,ok,
+easy_04,easy,78.257,40,heuristic_v2_adaptive_locked_sets,True,1.748083,0,0,152,58,0,ok,mode=core
+easy_04,easy,78.257,40,gurobi_default,True,4.824084,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000820s
+easy_04,easy,78.257,40,gurobi_heuristics,True,4.799209,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000833s
+easy_05,easy,78.707,40,recursive_backtracking,True,1.408667,1510,145,0,0,41,ok,
+easy_05,easy,78.707,40,heuristic_v1_constraint_mrv,True,0.647375,0,0,143,60,0,ok,
+easy_05,easy,78.707,40,heuristic_v2_adaptive_locked_sets,True,1.631459,0,0,143,60,0,ok,mode=core
+easy_05,easy,78.707,40,gurobi_default,True,4.926792,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000976s
+easy_05,easy,78.707,40,gurobi_heuristics,True,4.838708,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000820s
+easy_06,easy,80.032,40,recursive_backtracking,True,1.645584,1598,154,0,0,41,ok,
+easy_06,easy,80.032,40,heuristic_v1_constraint_mrv,True,0.651917,0,0,142,57,0,ok,
+easy_06,easy,80.032,40,heuristic_v2_adaptive_locked_sets,True,1.620083,0,0,142,57,0,ok,mode=core
+easy_06,easy,80.032,40,gurobi_default,True,4.869083,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000783s
+easy_06,easy,80.032,40,gurobi_heuristics,True,4.637291,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000784s
+easy_07,easy,80.932,40,recursive_backtracking,True,2.007583,1842,181,0,0,41,ok,
+easy_07,easy,80.932,40,heuristic_v1_constraint_mrv,True,0.703834,0,0,162,61,0,ok,
+easy_07,easy,80.932,40,heuristic_v2_adaptive_locked_sets,True,1.815708,0,0,162,61,0,ok,mode=core
+easy_07,easy,80.932,40,gurobi_default,True,4.331666,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000672s
+easy_07,easy,80.932,40,gurobi_heuristics,True,4.95975,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000864s
+easy_08,easy,81.158,40,recursive_backtracking,True,0.392917,303,10,0,0,41,ok,
+easy_08,easy,81.158,40,heuristic_v1_constraint_mrv,True,0.665334,0,0,150,62,0,ok,
+easy_08,easy,81.158,40,heuristic_v2_adaptive_locked_sets,True,1.61225,0,0,150,62,0,ok,mode=core
+easy_08,easy,81.158,40,gurobi_default,True,4.810208,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000889s
+easy_08,easy,81.158,40,gurobi_heuristics,True,4.664708,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000760s
+easy_09,easy,81.383,40,recursive_backtracking,True,0.686291,668,51,0,0,41,ok,
+easy_09,easy,81.383,40,heuristic_v1_constraint_mrv,True,0.663292,0,0,141,63,0,ok,
+easy_09,easy,81.383,40,heuristic_v2_adaptive_locked_sets,True,1.784917,0,0,141,63,0,ok,mode=core
+easy_09,easy,81.383,40,gurobi_default,True,4.740167,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000795s
+easy_09,easy,81.383,40,gurobi_heuristics,True,4.771,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000837s
+easy_10,easy,82.534,40,recursive_backtracking,True,0.522334,466,28,0,0,41,ok,
+easy_10,easy,82.534,40,heuristic_v1_constraint_mrv,True,0.715041,0,0,154,77,0,ok,
+easy_10,easy,82.534,40,heuristic_v2_adaptive_locked_sets,True,1.746,0,0,154,77,0,ok,mode=core
+easy_10,easy,82.534,40,gurobi_default,True,4.691875,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000787s
+easy_10,easy,82.534,40,gurobi_heuristics,True,4.592959,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000733s
+medium_01,medium,88.815,34,recursive_backtracking,True,2.521041,2567,260,0,0,47,ok,
+medium_01,medium,88.815,34,heuristic_v1_constraint_mrv,True,0.692292,0,0,184,72,0,ok,
+medium_01,medium,88.815,34,heuristic_v2_adaptive_locked_sets,True,1.710416,0,0,184,72,0,ok,mode=core
+medium_01,medium,88.815,34,gurobi_default,True,4.517458,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000741s
+medium_01,medium,88.815,34,gurobi_heuristics,True,4.4805,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000678s
+medium_02,medium,91.418,34,recursive_backtracking,True,1.722916,1855,180,0,0,47,ok,
+medium_02,medium,91.418,34,heuristic_v1_constraint_mrv,True,0.726042,0,0,164,85,0,ok,
+medium_02,medium,91.418,34,heuristic_v2_adaptive_locked_sets,True,1.844708,0,0,164,85,0,ok,mode=core
+medium_02,medium,91.418,34,gurobi_default,True,4.461,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000741s
+medium_02,medium,91.418,34,gurobi_heuristics,True,4.532666,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000724s
+medium_03,medium,92.219,34,recursive_backtracking,True,1.8525,1862,181,0,0,47,ok,
+medium_03,medium,92.219,34,heuristic_v1_constraint_mrv,True,0.746333,0,0,181,89,0,ok,
+medium_03,medium,92.219,34,heuristic_v2_adaptive_locked_sets,True,1.84475,0,0,181,89,0,ok,mode=core
+medium_03,medium,92.219,34,gurobi_default,True,4.533166,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000716s
+medium_03,medium,92.219,34,gurobi_heuristics,True,4.448875,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000694s
+medium_04,medium,94.221,34,recursive_backtracking,True,1.23775,1248,114,0,0,47,ok,
+medium_04,medium,94.221,34,heuristic_v1_constraint_mrv,True,0.85375,0,0,199,99,0,ok,
+medium_04,medium,94.221,34,heuristic_v2_adaptive_locked_sets,True,1.82475,0,0,199,99,0,ok,mode=core
+medium_04,medium,94.221,34,gurobi_default,True,4.397375,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000737s
+medium_04,medium,94.221,34,gurobi_heuristics,True,4.462792,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000714s
+medium_05,medium,94.421,34,recursive_backtracking,True,17.64075,18816,2062,0,0,47,ok,
+medium_05,medium,94.421,34,heuristic_v1_constraint_mrv,True,0.766916,0,0,186,100,0,ok,
+medium_05,medium,94.421,34,heuristic_v2_adaptive_locked_sets,True,1.865791,0,0,186,100,0,ok,mode=core
+medium_05,medium,94.421,34,gurobi_default,True,4.908166,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000835s
+medium_05,medium,94.421,34,gurobi_heuristics,True,4.786708,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000874s
+medium_06,medium,96.019,34,recursive_backtracking,True,1.586292,1697,162,0,0,47,ok,
+medium_06,medium,96.019,34,heuristic_v1_constraint_mrv,True,0.703292,0,0,179,88,0,ok,
+medium_06,medium,96.019,34,heuristic_v2_adaptive_locked_sets,True,1.733541,0,0,179,88,0,ok,mode=core
+medium_06,medium,96.019,34,gurobi_default,True,4.507,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000719s
+medium_06,medium,96.019,34,gurobi_heuristics,True,4.772459,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000841s
+medium_07,medium,96.023,34,recursive_backtracking,True,32.375083,36080,3983,0,0,47,ok,
+medium_07,medium,96.023,34,heuristic_v1_constraint_mrv,True,0.839042,0,0,187,108,0,ok,
+medium_07,medium,96.023,34,heuristic_v2_adaptive_locked_sets,True,1.94675,0,0,187,108,0,ok,mode=core
+medium_07,medium,96.023,34,gurobi_default,True,4.72725,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000859s
+medium_07,medium,96.023,34,gurobi_heuristics,True,4.649584,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000729s
+medium_08,medium,97.222,34,recursive_backtracking,True,3.599375,4163,438,0,0,47,ok,
+medium_08,medium,97.222,34,heuristic_v1_constraint_mrv,True,0.760875,0,0,189,104,0,ok,
+medium_08,medium,97.222,34,heuristic_v2_adaptive_locked_sets,True,1.881083,0,0,189,104,0,ok,mode=core
+medium_08,medium,97.222,34,gurobi_default,True,4.728042,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000787s
+medium_08,medium,97.222,34,gurobi_heuristics,True,4.653916,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000876s
+medium_09,medium,97.222,34,recursive_backtracking,True,4.547458,4883,517,0,0,47,ok,
+medium_09,medium,97.222,34,heuristic_v1_constraint_mrv,True,0.764875,0,0,172,104,0,ok,
+medium_09,medium,97.222,34,heuristic_v2_adaptive_locked_sets,True,1.858166,0,0,172,104,0,ok,mode=core
+medium_09,medium,97.222,34,gurobi_default,True,4.6935,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000811s
+medium_09,medium,97.222,34,gurobi_heuristics,True,4.430625,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000728s
+medium_10,medium,97.623,34,recursive_backtracking,True,2.946291,3027,309,0,0,47,ok,
+medium_10,medium,97.623,34,heuristic_v1_constraint_mrv,True,0.787541,0,0,198,106,0,ok,
+medium_10,medium,97.623,34,heuristic_v2_adaptive_locked_sets,True,2.027,0,0,198,106,0,ok,mode=core
+medium_10,medium,97.623,34,gurobi_default,True,4.465625,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000749s
+medium_10,medium,97.623,34,gurobi_heuristics,True,4.763291,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000821s
+hard_01,hard,99.568,30,recursive_backtracking,True,31.986834,34666,3823,0,0,51,ok,
+hard_01,hard,99.568,30,heuristic_v1_constraint_mrv,True,0.743416,0,0,228,109,0,ok,
+hard_01,hard,99.568,30,heuristic_v2_adaptive_locked_sets,True,1.914958,0,0,228,109,0,ok,mode=core
+hard_01,hard,99.568,30,gurobi_default,True,4.562666,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000702s
+hard_01,hard,99.568,30,gurobi_heuristics,True,4.592958,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000861s
+hard_02,hard,105.132,28,recursive_backtracking,True,106.381625,115428,12796,0,0,53,ok,
+hard_02,hard,105.132,28,heuristic_v1_constraint_mrv,True,0.807708,0,0,246,119,0,ok,
+hard_02,hard,105.132,28,heuristic_v2_adaptive_locked_sets,True,1.925959,0,0,246,119,0,ok,mode=core
+hard_02,hard,105.132,28,gurobi_default,True,4.757333,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000869s
+hard_02,hard,105.132,28,gurobi_heuristics,True,4.554916,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000738s
+hard_03,hard,105.856,28,recursive_backtracking,True,16.557083,17269,1889,0,0,53,ok,
+hard_03,hard,105.856,28,heuristic_v1_constraint_mrv,True,0.785375,0,0,227,123,0,ok,
+hard_03,hard,105.856,28,heuristic_v2_adaptive_locked_sets,True,1.955375,0,0,227,123,0,ok,mode=core
+hard_03,hard,105.856,28,gurobi_default,True,4.957291,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000905s
+hard_03,hard,105.856,28,gurobi_heuristics,True,5.077667,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000882s
+hard_04,hard,105.856,28,recursive_backtracking,True,2.343666,2362,233,0,0,53,ok,
+hard_04,hard,105.856,28,heuristic_v1_constraint_mrv,True,0.854583,0,0,231,123,0,ok,
+hard_04,hard,105.856,28,heuristic_v2_adaptive_locked_sets,True,2.041791,0,0,231,123,0,ok,mode=core
+hard_04,hard,105.856,28,gurobi_default,True,4.866417,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000858s
+hard_04,hard,105.856,28,gurobi_heuristics,True,4.564625,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000744s
+hard_05,hard,106.037,28,recursive_backtracking,True,16.786625,18172,1988,0,0,53,ok,
+hard_05,hard,106.037,28,heuristic_v1_constraint_mrv,True,0.856167,0,0,240,124,0,ok,
+hard_05,hard,106.037,28,heuristic_v2_adaptive_locked_sets,True,1.982875,0,0,240,124,0,ok,mode=core
+hard_05,hard,106.037,28,gurobi_default,True,4.735125,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000845s
+hard_05,hard,106.037,28,gurobi_heuristics,True,4.706291,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000851s
+hard_06,hard,106.228,28,recursive_backtracking,True,1.771625,1815,172,0,0,53,ok,
+hard_06,hard,106.228,28,heuristic_v1_constraint_mrv,True,0.797458,0,0,225,114,0,ok,
+hard_06,hard,106.228,28,heuristic_v2_adaptive_locked_sets,True,1.952959,0,0,225,114,0,ok,mode=core
+hard_06,hard,106.228,28,gurobi_default,True,4.484042,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000734s
+hard_06,hard,106.228,28,gurobi_heuristics,True,4.469166,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000707s
+hard_07,hard,106.399,28,recursive_backtracking,True,43.571166,49180,5435,0,0,53,ok,
+hard_07,hard,106.399,28,heuristic_v1_constraint_mrv,True,0.863292,0,0,222,126,0,ok,
+hard_07,hard,106.399,28,heuristic_v2_adaptive_locked_sets,True,2.052958,0,0,222,126,0,ok,mode=core
+hard_07,hard,106.399,28,gurobi_default,True,4.938375,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000932s
+hard_07,hard,106.399,28,gurobi_heuristics,True,4.722208,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000840s
+hard_08,hard,107.304,28,recursive_backtracking,True,46.063542,48496,5360,0,0,53,ok,
+hard_08,hard,107.304,28,heuristic_v1_constraint_mrv,True,0.886958,0,0,207,131,0,ok,
+hard_08,hard,107.304,28,heuristic_v2_adaptive_locked_sets,True,2.024792,0,0,207,131,0,ok,mode=core
+hard_08,hard,107.304,28,gurobi_default,True,5.253708,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001305s
+hard_08,hard,107.304,28,gurobi_heuristics,True,4.899709,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000838s
+hard_09,hard,108.751,28,recursive_backtracking,True,31.614709,33126,3648,0,0,53,ok,
+hard_09,hard,108.751,28,heuristic_v1_constraint_mrv,True,1.017,0,0,231,139,0,ok,
+hard_09,hard,108.751,28,heuristic_v2_adaptive_locked_sets,True,2.152458,0,0,231,139,0,ok,mode=core
+hard_09,hard,108.751,28,gurobi_default,True,4.872083,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000858s
+hard_09,hard,108.751,28,gurobi_heuristics,True,4.9255,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000851s
+hard_10,hard,109.265,26,recursive_backtracking,True,6.714375,6917,738,0,0,55,ok,
+hard_10,hard,109.265,26,heuristic_v1_constraint_mrv,True,0.922333,0,0,263,144,0,ok,
+hard_10,hard,109.265,26,heuristic_v2_adaptive_locked_sets,True,2.233,0,0,263,144,0,ok,mode=core
+hard_10,hard,109.265,26,gurobi_default,True,4.676416,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000823s
+hard_10,hard,109.265,26,gurobi_heuristics,True,4.517208,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000728s
+expert_01,expert,109.294,28,recursive_backtracking,False,184.192375,200001,22214,0,0,39,decision_budget_exceeded,
+expert_01,expert,109.294,28,heuristic_v1_constraint_mrv,True,0.866334,0,0,225,142,0,ok,
+expert_01,expert,109.294,28,heuristic_v2_adaptive_locked_sets,True,2.027375,0,0,225,142,0,ok,mode=core
+expert_01,expert,109.294,28,gurobi_default,True,4.82475,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000864s
+expert_01,expert,109.294,28,gurobi_heuristics,True,4.624917,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000780s
+expert_02,expert,110.208,28,recursive_backtracking,False,197.267084,200001,22208,0,0,48,decision_budget_exceeded,
+expert_02,expert,110.208,28,heuristic_v1_constraint_mrv,True,0.815042,0,0,227,136,0,ok,
+expert_02,expert,110.208,28,heuristic_v2_adaptive_locked_sets,True,1.927,0,0,227,136,0,ok,mode=core
+expert_02,expert,110.208,28,gurobi_default,True,5.076167,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000954s
+expert_02,expert,110.208,28,gurobi_heuristics,True,4.625459,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000862s
+expert_03,expert,115.315,24,recursive_backtracking,True,135.082375,141311,15669,0,0,57,ok,
+expert_03,expert,115.315,24,heuristic_v1_constraint_mrv,True,1.000834,0,0,269,158,0,ok,
+expert_03,expert,115.315,24,heuristic_v2_adaptive_locked_sets,True,2.254542,0,0,269,158,0,ok,mode=core
+expert_03,expert,115.315,24,gurobi_default,True,17.012542,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000928s
+expert_03,expert,115.315,24,gurobi_heuristics,True,4.539959,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000774s
+expert_04,expert,121.564,26,recursive_backtracking,True,50.957542,52202,5768,0,0,55,ok,
+expert_04,expert,121.564,26,heuristic_v1_constraint_mrv,True,1.593375,2,1,358,236,1,ok,
+expert_04,expert,121.564,26,heuristic_v2_adaptive_locked_sets,True,3.469209,1,0,228,140,1,ok,mode=advanced
+expert_04,expert,121.564,26,gurobi_default,True,4.872,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001111s
+expert_04,expert,121.564,26,gurobi_heuristics,True,5.298958,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001237s
+expert_05,expert,126.897,26,recursive_backtracking,False,180.244291,200001,22208,0,0,49,decision_budget_exceeded,
+expert_05,expert,126.897,26,heuristic_v1_constraint_mrv,True,1.170625,1,0,211,159,1,ok,
+expert_05,expert,126.897,26,heuristic_v2_adaptive_locked_sets,True,2.36425,1,0,211,159,1,ok,mode=core
+expert_05,expert,126.897,26,gurobi_default,True,4.91525,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001048s
+expert_05,expert,126.897,26,gurobi_heuristics,True,4.63825,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000929s
+expert_06,expert,129.247,27,recursive_backtracking,True,24.938375,28436,3131,0,0,54,ok,
+expert_06,expert,129.247,27,heuristic_v1_constraint_mrv,True,1.626333,7,3,341,249,4,ok,
+expert_06,expert,129.247,27,heuristic_v2_adaptive_locked_sets,True,3.014542,2,0,228,126,2,ok,mode=advanced
+expert_06,expert,129.247,27,gurobi_default,True,5.770459,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001721s
+expert_06,expert,129.247,27,gurobi_heuristics,True,5.505375,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001617s
+expert_07,expert,130.871,24,recursive_backtracking,False,186.042667,200001,22215,0,0,49,decision_budget_exceeded,
+expert_07,expert,130.871,24,heuristic_v1_constraint_mrv,True,2.071,6,7,452,400,3,ok,
+expert_07,expert,130.871,24,heuristic_v2_adaptive_locked_sets,True,2.799333,1,0,238,173,1,ok,mode=advanced
+expert_07,expert,130.871,24,gurobi_default,True,5.049958,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000921s
+expert_07,expert,130.871,24,gurobi_heuristics,True,4.636458,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000825s
+expert_08,expert,130.926,28,recursive_backtracking,True,63.691333,66751,7387,0,0,53,ok,
+expert_08,expert,130.926,28,heuristic_v1_constraint_mrv,True,1.442458,3,1,222,151,2,ok,
+expert_08,expert,130.926,28,heuristic_v2_adaptive_locked_sets,True,3.135666,2,1,268,170,1,ok,mode=advanced
+expert_08,expert,130.926,28,gurobi_default,True,4.909875,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000886s
+expert_08,expert,130.926,28,gurobi_heuristics,True,4.588167,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000771s
+expert_09,expert,133.784,28,recursive_backtracking,True,19.881708,21657,2377,0,0,53,ok,
+expert_09,expert,133.784,28,heuristic_v1_constraint_mrv,True,1.21525,2,1,226,151,1,ok,
+expert_09,expert,133.784,28,heuristic_v2_adaptive_locked_sets,True,3.524834,2,1,217,147,1,ok,mode=advanced
+expert_09,expert,133.784,28,gurobi_default,True,4.761208,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000881s
+expert_09,expert,133.784,28,gurobi_heuristics,True,4.494708,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.000775s
+expert_10,expert,134.126,28,recursive_backtracking,True,154.243,168180,18658,0,0,53,ok,
+expert_10,expert,134.126,28,heuristic_v1_constraint_mrv,True,1.153459,2,1,311,210,1,ok,
+expert_10,expert,134.126,28,heuristic_v2_adaptive_locked_sets,True,2.275917,2,1,311,210,1,ok,mode=core
+expert_10,expert,134.126,28,gurobi_default,True,5.679041,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001827s
+expert_10,expert,134.126,28,gurobi_heuristics,True,5.445542,0,0,0,0,0,ok,gurobi_status=optimal; runtime=0.001717s

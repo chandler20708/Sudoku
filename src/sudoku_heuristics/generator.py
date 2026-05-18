@@ -12,7 +12,7 @@ from sudoku_heuristics.grid import (
     replace_cell,
     validate_partial,
 )
-from sudoku_heuristics.solvers import solve_proposed_heuristic
+from sudoku_heuristics.solvers import SolveStats, solve_heuristic_v2
 
 
 @dataclass(frozen=True)
@@ -23,6 +23,13 @@ class PuzzleRecord:
     solution: Grid
     clues: int
     difficulty_score: float
+
+
+@dataclass(frozen=True)
+class PuzzleClassification:
+    status: str
+    solution_count_capped: int
+    note: str
 
 
 DIFFICULTY_CLUES = {
@@ -98,13 +105,25 @@ def count_solutions(grid: Grid, limit: int = 2) -> int:
     return count
 
 
-def difficulty_score(grid: Grid) -> float:
-    """Practical difficulty proxy based on givens, ambiguity, and heuristic search effort."""
+def classify_puzzle(grid: Grid, solution_limit: int = 2) -> PuzzleClassification:
+    validation = validate_partial(grid)
+    if not validation.valid:
+        return PuzzleClassification("invalid", 0, validation.message)
+    count = count_solutions(grid, limit=solution_limit)
+    if count == 0:
+        return PuzzleClassification("no_solution", 0, "Valid givens but no complete solution exists.")
+    if count == 1:
+        return PuzzleClassification("unique", 1, "Exactly one solution found within the cap.")
+    return PuzzleClassification("multiple_solutions", count, "At least two completions exist, so this is not a proper Sudoku puzzle.")
+
+
+def difficulty_score(grid: Grid, solved: SolveStats | None = None) -> float:
+    """Practical difficulty proxy using clue count, candidates, and V2 search effort."""
     empty_cells = 81 - clue_count(grid)
     candidate_sizes = [len(candidates_for(grid, r, c)) for r, c in CELLS if grid[r][c] == 0]
     average_candidates = sum(candidate_sizes) / max(len(candidate_sizes), 1)
     largest_candidate_set = max(candidate_sizes, default=0)
-    solved = solve_proposed_heuristic(grid)
+    solved = solved or solve_heuristic_v2(grid)
     search_cost = 8 * solved.decisions + 5 * solved.backtracks + 3 * solved.max_depth
     propagation_cost = 0.03 * solved.eliminations
     return round(
@@ -139,27 +158,26 @@ def generate_puzzle(difficulty: str = "hard", seed: int | None = None) -> Puzzle
         if count_solutions(candidate, limit=2) == 1:
             puzzle = candidate
 
-    solved = solve_proposed_heuristic(puzzle)
+    solved = solve_heuristic_v2(puzzle)
     if not solved.solved or solved.solution != solution:
-        solved_again = solve_proposed_heuristic(puzzle)
-        if not solved_again.solved:
-            raise RuntimeError("Generated puzzle was not solvable by the proposed solver.")
+        raise RuntimeError("Generated puzzle was not solvable by the proposed V2 solver.")
     return PuzzleRecord(
         puzzle_id=f"{difficulty}_{seed if seed is not None else rng.randrange(1_000_000)}",
         difficulty=difficulty,
         puzzle=puzzle,
         solution=solution,
         clues=clue_count(puzzle),
-        difficulty_score=difficulty_score(puzzle),
+        difficulty_score=difficulty_score(puzzle, solved=solved),
     )
 
 
 def generate_dataset(per_difficulty: int = 10, seed: int = 20260518) -> list[PuzzleRecord]:
     """Generate puzzles, then label difficulty by measured score quartiles.
 
-    Clue targets are used to create a varied candidate pool, but the final
-    benchmark label is assigned by practical difficulty score. This avoids the
-    common mistake of treating fewer givens as the only definition of harder.
+    Clue targets create a varied pool. Final labels are assigned by measured
+    difficulty score so the benchmark does not confuse fewer givens with harder
+    puzzles. The score includes candidate breadth, empty cells, and V2 search
+    effort.
     """
     target_profiles = list(DIFFICULTY_CLUES)
     pool: list[PuzzleRecord] = []

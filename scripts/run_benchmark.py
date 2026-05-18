@@ -8,11 +8,12 @@ import pandas as pd
 
 from sudoku_heuristics.benchmark import run_benchmark, write_benchmark, write_puzzles
 from sudoku_heuristics.edge_cases import AI_ESCARGOT, EDGE_CASES
-from sudoku_heuristics.generator import count_solutions
+from sudoku_heuristics.generator import classify_puzzle
 from sudoku_heuristics.grid import parse_grid
 from sudoku_heuristics.solvers import (
     solve_gurobi,
-    solve_proposed_heuristic,
+    solve_heuristic_v1,
+    solve_heuristic_v2,
     solve_recursive_backtracking,
 )
 from sudoku_heuristics.visuals import benchmark_charts, draw_grid
@@ -30,13 +31,14 @@ def run_edge_cases(root: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     solvers = [
         lambda grid: solve_recursive_backtracking(grid, max_decisions=50_000),
-        solve_proposed_heuristic,
+        solve_heuristic_v1,
+        solve_heuristic_v2,
         lambda grid: solve_gurobi(grid, "default"),
         lambda grid: solve_gurobi(grid, "heuristics"),
     ]
     rows = []
     for case in EDGE_CASES:
-        solution_count = count_solutions(case.puzzle, limit=2)
+        classification = classify_puzzle(case.puzzle, solution_limit=2)
         for solver in solvers:
             stats = solver(case.puzzle)
             rows.append(
@@ -44,7 +46,8 @@ def run_edge_cases(root: Path) -> None:
                     "case_id": case.case_id,
                     "category": case.category,
                     "expectation": case.expectation,
-                    "solution_count_capped_at_2": solution_count,
+                    "classification": classification.status,
+                    "solution_count_capped_at_2": classification.solution_count_capped,
                     "solver": stats.solver,
                     "solved": stats.solved,
                     "status": stats.status,
