@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from itertools import combinations
 from time import perf_counter
+from typing import Protocol
 
 from sudoku_heuristics.grid import (
     ALL_DIGITS,
@@ -11,7 +13,6 @@ from sudoku_heuristics.grid import (
     PEERS,
     ROW_UNITS,
     UNITS,
-    UNITS_BY_CELL,
     Cell,
     Grid,
     is_complete_solution,
@@ -20,6 +21,118 @@ from sudoku_heuristics.grid import (
 from sudoku_heuristics.models.common import SolveStats, timed_result
 
 Candidates = dict[Cell, set[int]]
+Stats = dict[str, int]
+
+
+class CandidateUpdateStrategy(Protocol):
+    """Strategy interface for one candidate-update rule.
+
+    Add a new heuristic by creating a class with this interface, then inject it
+    into V1/V2 through the strategy tuple. This keeps the propagation loop
+    closed for modification but open to new candidate-update rules.
+    """
+
+    name: str
+
+    def apply(self, candidates: Candidates, stats: Stats) -> bool | None:
+        """Return True if changed, False if unchanged, None if contradiction."""
+
+
+@dataclass(frozen=True)
+class NakedSinglesStrategy:
+    """Picture box: Naked singles.
+
+    If a cell has one candidate, remove that solved value from all peers.
+    """
+
+    name: str = "naked_singles"
+
+    def apply(self, candidates: Candidates, stats: Stats) -> bool | None:
+        changed = False
+        for cell, values in list(candidates.items()):
+            if len(values) != 1:
+                continue
+            value = next(iter(values))
+            for peer in PEERS[cell]:
+                before = len(candidates[peer])
+                if not eliminate(candidates, peer, value, stats):
+                    return None
+                changed = changed or len(candidates[peer]) < before
+        return changed
+
+
+@dataclass(frozen=True)
+class HiddenSinglesStrategy:
+    """Picture box: Hidden singles.
+
+    If a value has only one possible cell inside a row, column, or box, assign it
+    there even when that cell still has other candidates.
+    """
+
+    name: str = "hidden_singles"
+
+    def apply(self, candidates: Candidates, stats: Stats) -> bool | None:
+        changed = False
+        for unit in UNITS:
+            for value in ALL_DIGITS:
+                places = [cell for cell in unit if value in candidates[cell]]
+                if len(places) == 0:
+                    return None
+                if len(places) == 1 and len(candidates[places[0]]) > 1:
+                    before = sum(len(values) for values in candidates.values())
+                    stats["assignments"] += 1
+                    if not assign(candidates, places[0], value, stats):
+                        return None
+                    changed = changed or sum(len(values) for values in candidates.values()) < before
+        return changed
+
+
+@dataclass(frozen=True)
+class NakedSubsetStrategy:
+    """Picture box: Naked pairs, and V2 extension for naked triples.
+
+    If N cells in a unit contain exactly the same N candidate values as a group,
+    those values can be removed from the other cells in that unit.
+    """
+
+    subset_size: int
+
+    @property
+    def name(self) -> str:
+        return f"naked_{self.subset_size}_subset"
+
+    def apply(self, candidates: Candidates, stats: Stats) -> bool | None:
+        return naked_subsets(candidates, stats, self.subset_size)
+
+
+@dataclass(frozen=True)
+class LockedCandidatesStrategy:
+    """V2 extension: locked candidates / pointing and claiming.
+
+    If all possible places for a value in a box lie on one row or column, remove
+    that value from the rest of the row or column. The reverse line-to-box case
+    is handled as well.
+    """
+
+    name: str = "locked_candidates"
+
+    def apply(self, candidates: Candidates, stats: Stats) -> bool | None:
+        return locked_candidates(candidates, stats)
+
+
+V1_STRATEGIES: tuple[CandidateUpdateStrategy, ...] = (
+    NakedSinglesStrategy(),
+    HiddenSinglesStrategy(),
+    NakedSubsetStrategy(2),
+)
+
+V2_ADVANCED_STRATEGIES: tuple[CandidateUpdateStrategy, ...] = (
+    NakedSinglesStrategy(),
+    HiddenSinglesStrategy(),
+    NakedSubsetStrategy(2),
+    LockedCandidatesStrategy(),
+    NakedSubsetStrategy(3),
+)
 
 
 def initial_candidates(grid: Grid) -> Candidates | None:
@@ -39,7 +152,7 @@ def initial_candidates(grid: Grid) -> Candidates | None:
     return candidates
 
 
-def assign(candidates: Candidates, cell: Cell, value: int, stats: dict[str, int]) -> bool:
+def assign(candidates: Candidates, cell: Cell, value: int, stats: Stats) -> bool:
     other_values = candidates[cell] - {value}
     for other in tuple(other_values):
         if not eliminate(candidates, cell, other, stats):
@@ -47,31 +160,17 @@ def assign(candidates: Candidates, cell: Cell, value: int, stats: dict[str, int]
     return True
 
 
-def eliminate(candidates: Candidates, cell: Cell, value: int, stats: dict[str, int]) -> bool:
+def eliminate(candidates: Candidates, cell: Cell, value: int, stats: Stats) -> bool:
     if value not in candidates[cell]:
         return True
     candidates[cell].remove(value)
     stats["eliminations"] += 1
     if len(candidates[cell]) == 0:
         return False
-    if len(candidates[cell]) == 1:
-        solved_value = next(iter(candidates[cell]))
-        stats["assignments"] += 1
-        for peer in PEERS[cell]:
-            if not eliminate(candidates, peer, solved_value, stats):
-                return False
-    for unit in UNITS_BY_CELL[cell]:
-        places = [u for u in unit if value in candidates[u]]
-        if len(places) == 0:
-            return False
-        if len(places) == 1:
-            stats["assignments"] += 1
-            if not assign(candidates, places[0], value, stats):
-                return False
     return True
 
 
-def naked_subsets(candidates: Candidates, stats: dict[str, int], subset_size: int) -> bool | None:
+def naked_subsets(candidates: Candidates, stats: Stats, subset_size: int) -> bool | None:
     changed = False
     for unit in UNITS:
         subset_cells = [cell for cell in unit if 2 <= len(candidates[cell]) <= subset_size]
@@ -93,7 +192,7 @@ def _box_index(cell: Cell) -> int:
     return (cell[0] // 3) * 3 + cell[1] // 3
 
 
-def locked_candidates(candidates: Candidates, stats: dict[str, int]) -> bool | None:
+def locked_candidates(candidates: Candidates, stats: Stats) -> bool | None:
     removals: set[tuple[Cell, int]] = set()
     for box in BOX_UNITS:
         box_set = set(box)
@@ -129,26 +228,20 @@ def locked_candidates(candidates: Candidates, stats: dict[str, int]) -> bool | N
     return changed
 
 
-def propagate(candidates: Candidates, stats: dict[str, int], advanced: bool) -> bool:
+def propagate(
+    candidates: Candidates,
+    stats: Stats,
+    strategies: tuple[CandidateUpdateStrategy, ...],
+) -> bool:
+    """Run injected candidate-update strategies until no strategy changes state."""
     changed = True
     while changed:
-        before = sum(len(v) for v in candidates.values())
-        for cell, values in list(candidates.items()):
-            if len(values) == 1:
-                value = next(iter(values))
-                for peer in PEERS[cell]:
-                    if not eliminate(candidates, peer, value, stats):
-                        return False
-        for size in ((2, 3) if advanced else (2,)):
-            subset_result = naked_subsets(candidates, stats, size)
-            if subset_result is None:
+        changed = False
+        for strategy in strategies:
+            result = strategy.apply(candidates, stats)
+            if result is None:
                 return False
-        if advanced:
-            locked_result = locked_candidates(candidates, stats)
-            if locked_result is None:
-                return False
-        after = sum(len(v) for v in candidates.values())
-        changed = after < before
+            changed = changed or result
     return True
 
 
@@ -175,15 +268,15 @@ def ordered_values(candidates: Candidates, cell: Cell, use_lcv: bool) -> list[in
 
 def search(
     candidates: Candidates,
-    stats: dict[str, int],
+    stats: Stats,
     *,
-    advanced: bool,
+    strategies: tuple[CandidateUpdateStrategy, ...],
     use_degree_tiebreak: bool,
     use_lcv: bool,
     depth: int = 0,
 ) -> Candidates | None:
     stats["max_depth"] = max(stats["max_depth"], depth)
-    if not propagate(candidates, stats, advanced=advanced):
+    if not propagate(candidates, stats, strategies):
         stats["backtracks"] += 1
         return None
     if all(len(values) == 1 for values in candidates.values()):
@@ -196,7 +289,7 @@ def search(
             result = search(
                 branch,
                 stats,
-                advanced=advanced,
+                strategies=strategies,
                 use_degree_tiebreak=use_degree_tiebreak,
                 use_lcv=use_lcv,
                 depth=depth + 1,
@@ -211,7 +304,7 @@ def solve_candidate_heuristic(
     grid: Grid,
     *,
     solver: str,
-    advanced: bool,
+    strategies: tuple[CandidateUpdateStrategy, ...],
     use_degree_tiebreak: bool,
     use_lcv: bool,
 ) -> SolveStats:
@@ -226,7 +319,7 @@ def solve_candidate_heuristic(
     result = search(
         candidates,
         stats,
-        advanced=advanced,
+        strategies=strategies,
         use_degree_tiebreak=use_degree_tiebreak,
         use_lcv=use_lcv,
     )

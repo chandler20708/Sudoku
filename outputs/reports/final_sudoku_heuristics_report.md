@@ -8,11 +8,11 @@
 
 This project uses Sudoku as a compact constraint satisfaction problem. The point is not that Sudoku is the hardest optimisation problem; the point is that Sudoku makes search, constraints, and heuristic design easy to inspect.
 
-The final proposed method is **Heuristic V2: adaptive locked sets**. It starts from a transparent V1 solver based on candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. V2 then adds a small decision rule: it tests whether locked candidates and naked triples meaningfully shrink the candidate space. If they do, V2 uses the advanced path with a degree tie-breaker; if they do not, it keeps the faster V1 core.
+The final proposed method is **Heuristic V2: adaptive locked sets**. It starts from a transparent V1 solver based on candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. V2 then adds a small strategy-pattern decision rule: it injects candidate-update strategies for locked candidates and naked triples, tests whether they meaningfully shrink the candidate space, and only uses the advanced path when that extra reasoning is worthwhile.
 
-On the generated benchmark set of **40 unique Sudoku puzzles**, V2 solved **40/40**. Plain recursive backtracking solved **36/40** under a 200,000-decision cap. Gurobi default and Gurobi with heuristic-focused parameters both solved **40/40**. On expert puzzles, V2 reduced median decisions from **2** in V1 to **1**, and median backtracks from **1** to **0**, but it was slower than V1 because it spends extra time checking whether advanced propagation is worthwhile.
+On the generated benchmark set of **40 unique Sudoku puzzles**, V2 solved **40/40**. Plain recursive backtracking solved **36/40** under a 200,000-decision cap. Gurobi default and Gurobi with heuristic-focused parameters both solved **40/40**. After refactoring candidate updates into explicit strategy objects, V2 remains correct but is slower than V1 on this small benchmark. This is an intentional architecture trade-off: the code now makes it much easier to add or remove future heuristic rules without rewriting the solver loop.
 
-The main result is straightforward: **heuristics help because they use problem structure before searching blindly**. The honest nuance is also important: more advanced heuristics can reduce search effort while adding overhead, so the best solver is not always the one with the longest list of rules.
+The main result is straightforward: **heuristics help because they use problem structure before searching blindly**. The honest nuance is also important: more advanced or more modular heuristics can add overhead, so the best solver is not always the one with the longest list of rules.
 
 ## 2. Research Question
 
@@ -99,6 +99,14 @@ flowchart TD
 
 The important idea is not that V2 always uses every advanced rule. The important idea is adaptive escalation: use extra reasoning when it actually reduces uncertainty.
 
+## 6. Strategy Pattern For Candidate Updates
+
+The candidate-update rules are implemented as injected strategies in `src/sudoku_heuristics/models/candidate_tools.py`. This matches the visual architecture: the three V1 boxes are explicit classes named `NakedSinglesStrategy`, `HiddenSinglesStrategy`, and `NakedSubsetStrategy(2)` for naked pairs.
+
+V1 injects these rules through `V1_STRATEGIES`. V2 injects a larger strategy list through `V2_ADVANCED_STRATEGIES`, adding `LockedCandidatesStrategy` and `NakedSubsetStrategy(3)`.
+
+This means a future rule, such as X-wing, can be added as a new strategy class with an `apply(candidates, stats)` method, then injected into the relevant strategy tuple without rewriting the search loop.
+
 ## 6. Difficulty Definition
 
 The project does not treat clue count as the whole definition of difficulty. Fewer clues often make a puzzle harder, but not always. Some puzzles with fewer clues are easy because the remaining givens create many forced moves. Some puzzles with more clues are harder because the search branches are less obvious.
@@ -150,29 +158,28 @@ Raw outputs:
 
 ## 10. Main Results
 
-
-| Difficulty | Solver                         | Solved / 10 | Median difficulty score | Median time (ms) | Median decisions | Median backtracks |
-| ---------- | ------------------------------ | ----------: | ----------------------: | ---------------: | ---------------: | ----------------: |
-| Easy       | Proposed V2 adaptive heuristic |     10 / 10 |                   79.37 |             1.63 |                0 |                 0 |
-| Easy       | Heuristic V1 propagation + MRV |     10 / 10 |                   79.37 |             0.66 |                0 |                 0 |
-| Easy       | Plain recursive backtracking   |     10 / 10 |                   79.37 |             1.14 |            1,160 |               106 |
-| Easy       | Gurobi default MIP             |     10 / 10 |                   79.37 |             4.82 |                0 |                 0 |
-| Easy       | Gurobi heuristic mode          |     10 / 10 |                   79.37 |             4.73 |                0 |                 0 |
-| Medium     | Proposed V2 adaptive heuristic |     10 / 10 |                   95.22 |             1.85 |                0 |                 0 |
-| Medium     | Heuristic V1 propagation + MRV |     10 / 10 |                   95.22 |             0.76 |                0 |                 0 |
-| Medium     | Plain recursive backtracking   |     10 / 10 |                   95.22 |             2.73 |            2,797 |               284 |
-| Medium     | Gurobi default MIP             |     10 / 10 |                   95.22 |             4.53 |                0 |                 0 |
-| Medium     | Gurobi heuristic mode          |     10 / 10 |                   95.22 |             4.59 |                0 |                 0 |
-| Hard       | Proposed V2 adaptive heuristic |     10 / 10 |                  106.13 |             2.00 |                0 |                 0 |
-| Hard       | Heuristic V1 propagation + MRV |     10 / 10 |                  106.13 |             0.86 |                0 |                 0 |
-| Hard       | Plain recursive backtracking   |     10 / 10 |                  106.13 |            24.20 |           25,649 |             2,818 |
-| Hard       | Gurobi default MIP             |     10 / 10 |                  106.13 |             4.81 |                0 |                 0 |
-| Hard       | Gurobi heuristic mode          |     10 / 10 |                  106.13 |             4.65 |                0 |                 0 |
-| Expert     | Proposed V2 adaptive heuristic |     10 / 10 |                  128.07 |             2.58 |                1 |                 0 |
-| Expert     | Heuristic V1 propagation + MRV |     10 / 10 |                  128.07 |             1.19 |                2 |                 1 |
-| Expert     | Plain recursive backtracking   |      6 / 10 |                  128.07 |           144.66 |          154,746 |            17,164 |
-| Expert     | Gurobi default MIP             |     10 / 10 |                  128.07 |             4.98 |                0 |                 0 |
-| Expert     | Gurobi heuristic mode          |     10 / 10 |                  128.07 |             4.63 |                0 |                 0 |
+| Difficulty | Solver | Solved / 10 | Median difficulty score | Median time (ms) | Median decisions | Median backtracks |
+|---|---|---:|---:|---:|---:|---:|
+| Easy | Proposed V2 adaptive heuristic | 10 / 10 | 79.37 | 3.39 | 0 | 0 |
+| Easy | Heuristic V1 propagation + MRV | 10 / 10 | 79.37 | 1.26 | 0 | 0 |
+| Easy | Plain recursive backtracking | 10 / 10 | 79.37 | 1.22 | 1,160 | 106 |
+| Easy | Gurobi default MIP | 10 / 10 | 79.37 | 5.29 | 0 | 0 |
+| Easy | Gurobi heuristic mode | 10 / 10 | 79.37 | 5.16 | 0 | 0 |
+| Medium | Proposed V2 adaptive heuristic | 10 / 10 | 95.22 | 3.48 | 0 | 0 |
+| Medium | Heuristic V1 propagation + MRV | 10 / 10 | 95.22 | 1.33 | 0 | 0 |
+| Medium | Plain recursive backtracking | 10 / 10 | 95.22 | 2.66 | 2,797 | 284 |
+| Medium | Gurobi default MIP | 10 / 10 | 95.22 | 5.20 | 0 | 0 |
+| Medium | Gurobi heuristic mode | 10 / 10 | 95.22 | 5.07 | 0 | 0 |
+| Hard | Proposed V2 adaptive heuristic | 10 / 10 | 106.13 | 4.55 | 0 | 0 |
+| Hard | Heuristic V1 propagation + MRV | 10 / 10 | 106.13 | 1.79 | 0 | 0 |
+| Hard | Plain recursive backtracking | 10 / 10 | 106.13 | 23.48 | 25,649 | 2,818 |
+| Hard | Gurobi default MIP | 10 / 10 | 106.13 | 4.93 | 0 | 0 |
+| Hard | Gurobi heuristic mode | 10 / 10 | 106.13 | 4.84 | 0 | 0 |
+| Expert | Proposed V2 adaptive heuristic | 10 / 10 | 132.98 | 6.40 | 2 | 1 |
+| Expert | Heuristic V1 propagation + MRV | 10 / 10 | 132.98 | 3.19 | 2 | 1 |
+| Expert | Plain recursive backtracking | 6 / 10 | 132.98 | 144.75 | 154,746 | 17,164 |
+| Expert | Gurobi default MIP | 10 / 10 | 132.98 | 5.28 | 0 | 0 |
+| Expert | Gurobi heuristic mode | 10 / 10 | 132.98 | 5.05 | 0 | 0 |
 
 ![Completion rate by difficulty](../figures/completion_rate_by_difficulty.svg)
 
@@ -208,7 +215,7 @@ The proposed heuristic performs well because it uses the structure of Sudoku. In
 
 Plain recursive backtracking is simple but weak. It solves easier puzzles, but hard and expert cases can push it into many unproductive branches.
 
-V1 is the fastest custom solver on this small generated set because it does less reasoning overhead. V2 is the better research contribution because it demonstrates adaptive heuristic design: it can use more advanced candidate logic when that reduces search effort, while avoiding that path on cases such as AI Escargot where the probe says the extra rules are not worth it.
+V1 is the fastest custom solver on this small generated set because it does less reasoning overhead. V2 is the better architecture contribution because it demonstrates dependency injection and the strategy pattern: future candidate-update rules can be added as separate strategies instead of being hard-coded into the propagation loop.
 
 Gurobi is reliable. It solves the binary MIP formulation cleanly. However, Sudoku is tiny, and converting it into a MIP model has overhead. For a single 9 by 9 puzzle, a custom heuristic can be faster and easier to explain.
 
@@ -224,6 +231,7 @@ The custom heuristics do not remove worst-case exponential complexity. What they
 - naked and hidden singles force assignments without branching;
 - naked pairs, naked triples, and locked candidates remove values from related units;
 - MRV chooses the smallest branch when guessing is unavoidable;
+- the V2 strategy list makes future candidate-update rules injectable instead of hard-coded;
 - the V2 probe avoids paying for advanced rules when they do not reduce the candidate space enough.
 
 So the honest claim is:
@@ -239,7 +247,7 @@ Main limitations:
 - the benchmark has 40 generated puzzles, which is still small;
 - the difficulty score is a practical proxy, not an official Sudoku rating system;
 - generated puzzles may not represent newspaper, competition, or adversarial Sudoku distributions;
-- V2 reduces search effort on expert generated puzzles, but it is not always faster than V1 because advanced reasoning has overhead;
+- V2 is easier to extend, but it is slower than V1 on this small benchmark because strategy dispatch and advanced probing add overhead;
 - Gurobi results include Python model-building overhead, so they should not be interpreted as pure solver-engine time;
 - the Gurobi heuristic comparison uses parameter settings, not a deeply tuned MIP start or variable hint strategy;
 - the proposed solver includes only a subset of human Sudoku techniques.

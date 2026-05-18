@@ -34,8 +34,8 @@
 <rect x="632.0" y="400.0" width="22.0" height="0.0" fill="#b279a2"><title>Gurobi heuristic mode: 0.000</title></rect>
 <text x="799.5" y="430.0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">expert</text>
 <rect x="737.0" y="58.0" width="22.0" height="342.0" fill="#7f8c8d"><title>Plain recursive: 154745.500</title></rect>
-<rect x="762.0" y="400.0" width="22.0" height="0.0" fill="#4c78a8"><title>Heuristic V1: propagation + MRV: 2.000</title></rect>
-<rect x="787.0" y="400.0" width="22.0" height="0.0" fill="#f58518"><title>Proposed V2: adaptive locked sets: 1.000</title></rect>
+<rect x="762.0" y="400.0" width="22.0" height="0.0" fill="#4c78a8"><title>Heuristic V1: propagation + MRV: 1.500</title></rect>
+<rect x="787.0" y="400.0" width="22.0" height="0.0" fill="#f58518"><title>Proposed V2: adaptive locked sets: 1.500</title></rect>
 <rect x="812.0" y="400.0" width="22.0" height="0.0" fill="#54a24b"><title>Gurobi default: 0.000</title></rect>
 <rect x="837.0" y="400.0" width="22.0" height="0.0" fill="#b279a2"><title>Gurobi heuristic mode: 0.000</title></rect>
 <rect x="922" y="62" width="315" height="163" fill="#fff" stroke="#ddd"/>

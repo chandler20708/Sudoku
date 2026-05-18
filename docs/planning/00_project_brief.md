@@ -39,3 +39,7 @@ Separate literature claims, implementation details, generated benchmark results,
 ## Model file layout
 
 The solver implementations are separated under `src/sudoku_heuristics/models/`: recursive backtracking, V1, V2, Gurobi MIP, and the legacy V1 reference each have their own file. Shared candidate propagation is kept in `candidate_tools.py` to avoid duplicating fragile logic.
+
+## Strategy pattern note
+
+Candidate-update heuristics are now injected through strategy objects in `src/sudoku_heuristics/models/candidate_tools.py`. The pictured V1 rules are explicit strategy classes: `NakedSinglesStrategy`, `HiddenSinglesStrategy`, and `NakedSubsetStrategy(2)`. V2 extends the injected list with locked candidates and naked triples.

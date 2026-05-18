@@ -94,7 +94,17 @@ The benchmark currently uses 40 generated unique puzzles: 10 easy, 10 medium, 10
 | Gurobi default MIP | 40 / 40 |
 | Gurobi heuristic mode | 40 / 40 |
 
-The key interpretation is that the custom heuristics use Sudoku structure to reduce search effort. V2 reduces median expert search effort compared with V1, although V1 remains faster on simple generated puzzles because it does less reasoning work before search. Gurobi is reliable, but for a single 9 by 9 Sudoku puzzle, model-building overhead is visible. Plain backtracking is simple but weak on harder puzzles.
+The key interpretation is that the custom heuristics use Sudoku structure to reduce search effort. V2 is now structured for extension through injected candidate-update strategies. V1 remains faster on this small dataset, while V2 demonstrates how new heuristic rules can be added without rewriting the propagation loop. Gurobi is reliable, but for a single 9 by 9 Sudoku puzzle, model-building overhead is visible. Plain backtracking is simple but weak on harder puzzles.
+
+## Extending Heuristics
+
+Candidate updates use a small strategy pattern in `src/sudoku_heuristics/models/candidate_tools.py`. The pictured rules are represented directly as strategy classes:
+
+- `NakedSinglesStrategy`
+- `HiddenSinglesStrategy`
+- `NakedSubsetStrategy(2)` for naked pairs
+
+V2 adds `LockedCandidatesStrategy` and `NakedSubsetStrategy(3)`. A future heuristic can be added by implementing `CandidateUpdateStrategy.apply(...)` and injecting it into `V1_STRATEGIES` or `V2_ADVANCED_STRATEGIES`.
 
 ## Limitations
 

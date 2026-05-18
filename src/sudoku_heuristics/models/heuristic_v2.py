@@ -3,7 +3,13 @@ from __future__ import annotations
 from time import perf_counter
 
 from sudoku_heuristics.grid import Grid, is_complete_solution, validate_partial
-from sudoku_heuristics.models.candidate_tools import initial_candidates, propagate, search
+from sudoku_heuristics.models.candidate_tools import (
+    V1_STRATEGIES,
+    V2_ADVANCED_STRATEGIES,
+    initial_candidates,
+    propagate,
+    search,
+)
 from sudoku_heuristics.models.common import SolveStats, timed_result
 
 
@@ -32,7 +38,7 @@ def solve_heuristic_v2(grid: Grid) -> SolveStats:
 
     basic_stats = {"decisions": 0, "backtracks": 0, "assignments": 0, "eliminations": 0, "max_depth": 0}
     advanced_stats = {"decisions": 0, "backtracks": 0, "assignments": 0, "eliminations": 0, "max_depth": 0}
-    if not propagate(basic, basic_stats, advanced=False):
+    if not propagate(basic, basic_stats, V1_STRATEGIES):
         return timed_result(
             start,
             solver="heuristic_v2_adaptive_locked_sets",
@@ -40,7 +46,7 @@ def solve_heuristic_v2(grid: Grid) -> SolveStats:
             status="no_solution",
             **basic_stats,
         )
-    if not propagate(advanced, advanced_stats, advanced=True):
+    if not propagate(advanced, advanced_stats, V2_ADVANCED_STRATEGIES):
         advanced = basic
         advanced_stats = basic_stats.copy()
 
@@ -54,7 +60,7 @@ def solve_heuristic_v2(grid: Grid) -> SolveStats:
     result = search(
         candidates,
         stats,
-        advanced=use_advanced,
+        strategies=V2_ADVANCED_STRATEGIES if use_advanced else V1_STRATEGIES,
         use_degree_tiebreak=use_advanced,
         use_lcv=False,
     )

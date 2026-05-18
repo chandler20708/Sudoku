@@ -1,21 +1,21 @@
 case_id,category,expectation,classification,solution_count_capped_at_2,solver,solved,status,elapsed_ms,decisions,backtracks,max_depth,notes
-contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,recursive_backtracking,False,invalid,0.002792,0,0,0,"Duplicate 5 in a row, column, or box."
-contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,heuristic_v1_constraint_mrv,False,invalid,0.001584,0,0,0,"Duplicate 5 in a row, column, or box."
+contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,recursive_backtracking,False,invalid,0.002458,0,0,0,"Duplicate 5 in a row, column, or box."
+contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,heuristic_v1_constraint_mrv,False,invalid,0.001334,0,0,0,"Duplicate 5 in a row, column, or box."
 contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,heuristic_v2_adaptive_locked_sets,False,invalid,0.001,0,0,0,"Duplicate 5 in a row, column, or box."
-contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,gurobi_default,False,invalid,0.001209,0,0,0,"Duplicate 5 in a row, column, or box."
-contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,gurobi_heuristics,False,invalid,0.001167,0,0,0,"Duplicate 5 in a row, column, or box."
-empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,recursive_backtracking,True,ok,2.922875,3195,310,81,
-empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,heuristic_v1_constraint_mrv,True,ok,7.770041,47,0,47,
-empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,heuristic_v2_adaptive_locked_sets,True,ok,7.507375,47,0,47,mode=core
-empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,gurobi_default,True,ok,49.375709,0,0,0,gurobi_status=optimal; runtime=0.001956s
-empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,gurobi_heuristics,True,ok,4.168792,0,0,0,gurobi_status=optimal; runtime=0.000330s
-ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,recursive_backtracking,False,decision_budget_exceeded,47.901834,50001,5550,49,
-ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,heuristic_v1_constraint_mrv,True,ok,4.286583,19,11,8,
-ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,heuristic_v2_adaptive_locked_sets,True,ok,5.997917,19,11,8,mode=core
-ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,gurobi_default,True,ok,33.848583,1,0,0,gurobi_status=optimal; runtime=0.029805s
-ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,gurobi_heuristics,True,ok,246.91025,0,0,0,gurobi_status=optimal; runtime=0.242820s
-sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,recursive_backtracking,True,ok,5.049042,5136,535,64,
-sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,heuristic_v1_constraint_mrv,True,ok,4.832875,24,1,23,
-sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,heuristic_v2_adaptive_locked_sets,True,ok,15.816459,23,0,23,mode=advanced
-sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,gurobi_default,True,ok,9.04,0,0,0,gurobi_status=optimal; runtime=0.004150s
-sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,gurobi_heuristics,True,ok,8.000375,0,0,0,gurobi_status=optimal; runtime=0.003811s
+contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,gurobi_default,False,invalid,0.001125,0,0,0,"Duplicate 5 in a row, column, or box."
+contradictory_duplicate,unsolvable_invalid,Rejected because the first row already contains duplicate fixed values.,invalid,0,gurobi_heuristics,False,invalid,0.001,0,0,0,"Duplicate 5 in a row, column, or box."
+empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,recursive_backtracking,True,ok,2.97375,3195,310,81,
+empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,heuristic_v1_constraint_mrv,True,ok,26.739417,47,0,47,
+empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,heuristic_v2_adaptive_locked_sets,True,ok,27.861167,47,0,47,mode=core
+empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,gurobi_default,True,ok,73.644791,0,0,0,gurobi_status=optimal; runtime=0.001491s
+empty_grid_ambiguous,multiple_solutions,Not a proper Sudoku puzzle because it is underconstrained and has many completions.,multiple_solutions,2,gurobi_heuristics,True,ok,4.1845,0,0,0,gurobi_status=optimal; runtime=0.000320s
+ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,recursive_backtracking,False,decision_budget_exceeded,46.351292,50001,5550,49,
+ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,heuristic_v1_constraint_mrv,True,ok,15.725792,19,18,8,
+ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,heuristic_v2_adaptive_locked_sets,True,ok,17.757125,19,18,8,mode=core
+ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,gurobi_default,True,ok,53.131958,1,0,0,gurobi_status=optimal; runtime=0.048176s
+ai_escargot,very_hard,Solvable but designed to require deeper search than ordinary generated examples.,unique,1,gurobi_heuristics,True,ok,241.615958,0,0,0,gurobi_status=optimal; runtime=0.237073s
+sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,recursive_backtracking,True,ok,4.942,5136,535,64,
+sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,heuristic_v1_constraint_mrv,True,ok,15.53575,22,0,22,
+sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,heuristic_v2_adaptive_locked_sets,True,ok,16.8845,22,0,22,mode=core
+sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,gurobi_default,True,ok,8.302541,0,0,0,gurobi_status=optimal; runtime=0.003696s
+sparse_stress,stress_test,Sparse puzzle used to show that simple search can hit a decision budget.,multiple_solutions,2,gurobi_heuristics,True,ok,6.922375,0,0,0,gurobi_status=optimal; runtime=0.003184s
