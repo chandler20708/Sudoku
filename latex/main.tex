@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\input{harvard-manchester.tex}
+
+\setstretch{1.15}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+\newcommand{\proposalTitle}{Paper Title}
+\newcommand{\authorName}{Author Name}
+\newcommand{\dateSubmitted}{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+
+\vspace*{3cm}
+
+{\LARGE \bfseries \proposalTitle \par}
+
+\vspace{1.5cm}
+
+\begin{tabular}{rl}
+Author: & \authorName \\
+Date: & \dateSubmitted
+\end{tabular}
+
+\vfill
+Institution Name
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Start writing here. Cite an example source with \parencite{example2026}.
+
+\section{Literature Review}
+
+\section{Methods}
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\printbibliography
+
+\end{document}

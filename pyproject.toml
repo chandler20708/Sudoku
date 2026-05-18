@@ -1,0 +1,46 @@
+[project]
+name = "ra-project"
+version = "0.1.0"
+description = "Research assistant project workspace"
+requires-python = ">=3.11"
+dependencies = [
+    "polars>=1.0,<2.0",
+    "fastexcel>=0.12",
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "openpyxl>=3.1",
+    "xlsxwriter>=3.2",
+    "matplotlib>=3.8,<4.0",
+    "hvplot>=0.10",
+    "holoviews>=1.19",
+    "bokeh>=3.5",
+    "plotly>=5.24",
+    "streamlit>=1.40",
+    "simpy>=4.1,<5.0",
+    "gurobipy>=12.0",
+    "numpy>=1.26",
+    "scipy>=1.12",
+    "scikit-learn>=1.5",
+    "statsmodels>=0.14",
+    "joblib>=1.4",
+    "pydantic>=2.8",
+    "python-dotenv>=1.0",
+    "rich>=13.7",
+    "pytest>=8.0",
+    "ruff>=0.8",
+    "jupyterlab>=4.2",
+    "ipykernel>=6.29"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [".venv", "data", "outputs", "latex"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
