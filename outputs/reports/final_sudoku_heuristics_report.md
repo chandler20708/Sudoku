@@ -1,7 +1,7 @@
 # Heuristics For Solving Sudoku: Literature, Method, And Benchmark
 
-**Date:** 18 May 2026  
-**Repository:** [github.com/chandler20708/Sudoku](https://github.com/chandler20708/Sudoku)  
+**Date:** 18 May 2026
+**Repository:** [github.com/chandler20708/Sudoku](https://github.com/chandler20708/Sudoku)
 **Main purpose:** demonstrate practical use of heuristics by building and testing a Sudoku-solving system.
 
 ## 1. Executive Summary
@@ -79,23 +79,25 @@ The important idea is the loop. The solver does not guess immediately. It first 
 
 ## 6. Baselines
 
-| Solver | What it represents | Why included |
-|---|---|---|
-| Plain backtracking | Typical LeetCode-style programming solution | Shows what happens when search is mostly blind. |
-| Proposed heuristic | Constraint propagation plus MRV branching | Main method being tested. |
-| Gurobi default | General-purpose binary MIP solver | Shows the optimisation-modelling baseline. |
-| Gurobi heuristics | Gurobi with `Heuristics=1.0`, `MIPFocus=1`, `NoRelHeurWork=20` | Tests whether Gurobi's heuristic-oriented settings help on this formulation. |
+
+| Solver             | What it represents                                            | Why included                                                                 |
+| ------------------ | ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Plain backtracking | Typical programming solution                                 | Shows what happens when search is mostly blind.                              |
+| Proposed heuristic | Constraint propagation plus MRV branching                     | Main method being tested.                                                    |
+| Gurobi default     | General-purpose binary MIP solver                             | Shows the optimisation-modelling baseline.                                   |
+| Gurobi heuristics  | Gurobi with`Heuristics=1.0`, `MIPFocus=1`, `NoRelHeurWork=20` | Tests whether Gurobi's heuristic-oriented settings help on this formulation. |
 
 ## 7. Metrics
 
-| Metric | What it measures | Why it matters |
-|---|---|---|
-| Completion count | Number of puzzles solved within the solver budget | The first requirement is correctness and completion. |
-| Solve time | Wall-clock milliseconds in this Python run | Measures practical user-facing speed. |
-| Decisions | Branch choices for custom solvers; Gurobi node count proxy for MIP | Measures search effort, not just time. |
-| Backtracks | Number of times a branch had to be undone | Shows how often the solver made an unproductive choice. |
-| Assignments and eliminations | Propagation work done by the heuristic solver | Shows whether progress came from reasoning rather than guessing. |
-| Maximum depth | Deepest search recursion level | Gives a simple complexity proxy. |
+
+| Metric                       | What it measures                                                   | Why it matters                                                   |
+| ---------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Completion count             | Number of puzzles solved within the solver budget                  | The first requirement is correctness and completion.             |
+| Solve time                   | Wall-clock milliseconds in this Python run                         | Measures practical user-facing speed.                            |
+| Decisions                    | Branch choices for custom solvers; Gurobi node count proxy for MIP | Measures search effort, not just time.                           |
+| Backtracks                   | Number of times a branch had to be undone                          | Shows how often the solver made an unproductive choice.          |
+| Assignments and eliminations | Propagation work done by the heuristic solver                      | Shows whether progress came from reasoning rather than guessing. |
+| Maximum depth                | Deepest search recursion level                                     | Gives a simple complexity proxy.                                 |
 
 These metrics are useful together because time alone can mislead. Gurobi has model-building overhead; plain backtracking may be fast on easy puzzles but explode on hard ones; the heuristic solver may spend more time reasoning but save search branches.
 
@@ -124,24 +126,25 @@ Raw outputs:
 
 ## 9. Results
 
-| Difficulty | Solver | Solved / 5 | Median time (ms) | Median decisions |
-|---|---:|---:|---:|---:|
-| Easy | Proposed heuristic | 5 / 5 | 0.86 | 0 |
-| Easy | Plain backtracking | 5 / 5 | 0.53 | 516 |
-| Easy | Gurobi default | 5 / 5 | 4.95 | 0 |
-| Easy | Gurobi heuristics | 5 / 5 | 4.98 | 0 |
-| Medium | Proposed heuristic | 5 / 5 | 0.99 | 0 |
-| Medium | Plain backtracking | 5 / 5 | 5.23 | 5,673 |
-| Medium | Gurobi default | 5 / 5 | 4.72 | 0 |
-| Medium | Gurobi heuristics | 5 / 5 | 4.57 | 0 |
-| Hard | Proposed heuristic | 5 / 5 | 1.22 | 0 |
-| Hard | Plain backtracking | 2 / 5 | 171.16 | 200,001 |
-| Hard | Gurobi default | 5 / 5 | 4.98 | 0 |
-| Hard | Gurobi heuristics | 5 / 5 | 4.80 | 0 |
-| Expert | Proposed heuristic | 5 / 5 | 1.54 | 4 |
-| Expert | Plain backtracking | 4 / 5 | 146.22 | 154,435 |
-| Expert | Gurobi default | 5 / 5 | 4.95 | 0 |
-| Expert | Gurobi heuristics | 5 / 5 | 5.03 | 0 |
+
+| Difficulty |             Solver | Solved / 5 | Median time (ms) | Median decisions |
+| ---------- | -----------------: | ---------: | ---------------: | ---------------: |
+| Easy       | Proposed heuristic |      5 / 5 |             0.86 |                0 |
+| Easy       | Plain backtracking |      5 / 5 |             0.53 |              516 |
+| Easy       |     Gurobi default |      5 / 5 |             4.95 |                0 |
+| Easy       |  Gurobi heuristics |      5 / 5 |             4.98 |                0 |
+| Medium     | Proposed heuristic |      5 / 5 |             0.99 |                0 |
+| Medium     | Plain backtracking |      5 / 5 |             5.23 |            5,673 |
+| Medium     |     Gurobi default |      5 / 5 |             4.72 |                0 |
+| Medium     |  Gurobi heuristics |      5 / 5 |             4.57 |                0 |
+| Hard       | Proposed heuristic |      5 / 5 |             1.22 |                0 |
+| Hard       | Plain backtracking |      2 / 5 |           171.16 |          200,001 |
+| Hard       |     Gurobi default |      5 / 5 |             4.98 |                0 |
+| Hard       |  Gurobi heuristics |      5 / 5 |             4.80 |                0 |
+| Expert     | Proposed heuristic |      5 / 5 |             1.54 |                4 |
+| Expert     | Plain backtracking |      4 / 5 |           146.22 |          154,435 |
+| Expert     |     Gurobi default |      5 / 5 |             4.95 |                0 |
+| Expert     |  Gurobi heuristics |      5 / 5 |             5.03 |                0 |
 
 ![Completion rate by difficulty](../figures/completion_rate_by_difficulty.svg)
 

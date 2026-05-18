@@ -3,7 +3,15 @@ from __future__ import annotations
 import random
 from dataclasses import dataclass
 
-from sudoku_heuristics.grid import CELLS, Grid, as_grid, clue_count, replace_cell, validate_partial
+from sudoku_heuristics.grid import (
+    CELLS,
+    Grid,
+    as_grid,
+    candidates_for,
+    clue_count,
+    replace_cell,
+    validate_partial,
+)
 from sudoku_heuristics.solvers import solve_proposed_heuristic
 
 
@@ -14,6 +22,7 @@ class PuzzleRecord:
     puzzle: Grid
     solution: Grid
     clues: int
+    difficulty_score: float
 
 
 DIFFICULTY_CLUES = {
@@ -89,6 +98,21 @@ def count_solutions(grid: Grid, limit: int = 2) -> int:
     return count
 
 
+def difficulty_score(grid: Grid) -> float:
+    """Practical difficulty proxy based on givens, ambiguity, and heuristic search effort."""
+    empty_cells = 81 - clue_count(grid)
+    candidate_sizes = [len(candidates_for(grid, r, c)) for r, c in CELLS if grid[r][c] == 0]
+    average_candidates = sum(candidate_sizes) / max(len(candidate_sizes), 1)
+    largest_candidate_set = max(candidate_sizes, default=0)
+    solved = solve_proposed_heuristic(grid)
+    search_cost = 8 * solved.decisions + 5 * solved.backtracks + 3 * solved.max_depth
+    propagation_cost = 0.03 * solved.eliminations
+    return round(
+        empty_cells * 1.2 + average_candidates * 8 + largest_candidate_set * 2 + search_cost + propagation_cost,
+        3,
+    )
+
+
 def generate_puzzle(difficulty: str = "hard", seed: int | None = None) -> PuzzleRecord:
     if difficulty not in DIFFICULTY_CLUES:
         raise ValueError(f"Unknown difficulty: {difficulty}")
@@ -106,7 +130,11 @@ def generate_puzzle(difficulty: str = "hard", seed: int | None = None) -> Puzzle
             continue
         candidate = replace_cell(puzzle, r, c, 0)
         mirror = (8 - r, 8 - c)
-        if mirror != (r, c) and candidate[mirror[0]][mirror[1]] != 0 and clue_count(candidate) - 1 >= target_clues:
+        if (
+            mirror != (r, c)
+            and candidate[mirror[0]][mirror[1]] != 0
+            and clue_count(candidate) - 1 >= target_clues
+        ):
             candidate = replace_cell(candidate, mirror[0], mirror[1], 0)
         if count_solutions(candidate, limit=2) == 1:
             puzzle = candidate
@@ -122,6 +150,7 @@ def generate_puzzle(difficulty: str = "hard", seed: int | None = None) -> Puzzle
         puzzle=puzzle,
         solution=solution,
         clues=clue_count(puzzle),
+        difficulty_score=difficulty_score(puzzle),
     )
 
 
@@ -131,4 +160,3 @@ def generate_dataset(per_difficulty: int = 10, seed: int = 20260518) -> list[Puz
         for i in range(per_difficulty):
             records.append(generate_puzzle(difficulty=difficulty, seed=seed + 1000 * len(records) + i))
     return records
-

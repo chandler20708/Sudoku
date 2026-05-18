@@ -8,21 +8,22 @@ from sudoku_heuristics.grid import grid_to_line
 from sudoku_heuristics.solvers import (
     SolveStats,
     solve_gurobi,
-    solve_leetcode_backtracking,
     solve_proposed_heuristic,
+    solve_recursive_backtracking,
 )
 
 
 def write_puzzles(records: list[PuzzleRecord], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["puzzle_id", "difficulty", "clues", "puzzle", "solution"])
+        writer = csv.DictWriter(f, fieldnames=["puzzle_id", "difficulty", "difficulty_score", "clues", "puzzle", "solution"])
         writer.writeheader()
         for record in records:
             writer.writerow(
                 {
                     "puzzle_id": record.puzzle_id,
                     "difficulty": record.difficulty,
+                    "difficulty_score": round(record.difficulty_score, 3),
                     "clues": record.clues,
                     "puzzle": grid_to_line(record.puzzle),
                     "solution": grid_to_line(record.solution),
@@ -34,6 +35,7 @@ def _row(record: PuzzleRecord, stats: SolveStats) -> dict[str, object]:
     return {
         "puzzle_id": record.puzzle_id,
         "difficulty": record.difficulty,
+        "difficulty_score": round(record.difficulty_score, 3),
         "clues": record.clues,
         "solver": stats.solver,
         "solved": stats.solved,
@@ -52,7 +54,7 @@ def run_benchmark(per_difficulty: int = 8, seed: int = 20260518) -> tuple[list[P
     records = generate_dataset(per_difficulty=per_difficulty, seed=seed)
     rows: list[dict[str, object]] = []
     solvers = [
-        solve_leetcode_backtracking,
+        solve_recursive_backtracking,
         solve_proposed_heuristic,
         lambda grid: solve_gurobi(grid, "default"),
         lambda grid: solve_gurobi(grid, "heuristics"),

@@ -34,7 +34,7 @@ def _timed_result(start: float, **kwargs: object) -> SolveStats:
     return SolveStats(elapsed_ms=(perf_counter() - start) * 1000, **kwargs)
 
 
-def solve_leetcode_backtracking(grid: Grid, max_decisions: int = 200_000) -> SolveStats:
+def solve_recursive_backtracking(grid: Grid, max_decisions: int = 200_000) -> SolveStats:
     start = perf_counter()
     rows = [list(row) for row in grid]
     stats = {"decisions": 0, "backtracks": 0, "max_depth": 0}
@@ -70,7 +70,7 @@ def solve_leetcode_backtracking(grid: Grid, max_decisions: int = 200_000) -> Sol
     except TimeoutError:
         return _timed_result(
             start,
-            solver="leetcode_backtracking",
+            solver="recursive_backtracking",
             solved=False,
             status="decision_budget_exceeded",
             decisions=stats["decisions"],
@@ -80,7 +80,7 @@ def solve_leetcode_backtracking(grid: Grid, max_decisions: int = 200_000) -> Sol
     solution = as_grid(rows) if solved else None
     return _timed_result(
         start,
-        solver="leetcode_backtracking",
+        solver="recursive_backtracking",
         solved=solved and solution is not None and is_complete_solution(solution),
         decisions=stats["decisions"],
         backtracks=stats["backtracks"],
@@ -304,3 +304,7 @@ def solve_gurobi(grid: Grid, mode: str = "default", time_limit: float = 5.0) -> 
         )
     except Exception as exc:  # pragma: no cover - license/environment dependent
         return _timed_result(start, solver=f"gurobi_{mode}", solved=False, status="error", notes=[str(exc)])
+
+
+# Backwards-compatible alias for older local notebooks or scripts.
+solve_basic_backtracking = solve_recursive_backtracking
