@@ -10,26 +10,25 @@ Build and explain a Sudoku solver that demonstrates practical understanding of h
 
 ## Decision Context
 
-The project supports a learning/research demonstration for an optimisation professor: it shows how domain heuristics reduce search effort in a constraint problem.
+The project demonstrates how domain heuristics reduce search effort in a constraint satisfaction problem. Sudoku is used because its rules are simple to explain while its search space is large enough to make heuristic design meaningful.
 
-## Stakeholders
+## Audience
 
-| Stakeholder | What they care about | Implication |
+| Audience | What they care about | Implication |
 |---|---|---|
-| Chandler | Fast understanding and a defensible explanation | Keep a separate `learning/` folder and write plainly. |
-| Professor / assessor | Evidence of heuristic reasoning | Include architecture, metrics, limitations, and baseline comparison. |
-| Future Codex/ChatGPT work | Reproducibility | Keep code, data, outputs, and report in predictable folders. |
+| Technical assessor | Correctness, comparison design, and reproducibility | Include source code, validation tests, benchmark data, and clear metrics. |
+| Non-specialist reader | Plain explanation of why heuristics help | Explain candidate elimination, forced moves, and branching choices in accessible language. |
+| Future maintainer | Simple project structure | Keep solver code, benchmark scripts, generated data, and final outputs in predictable folders. |
 
 ## Deliverables
 
-| Deliverable | Owner | Status | Notes |
-|---|---|---|---|
-| Working puzzle generator | Codex | Complete | Generates unique puzzles by difficulty target. |
-| Heuristic solver | Codex | Complete | Uses propagation, naked/hidden singles, naked pairs, MRV search. |
-| Baseline solvers | Codex | Complete | Plain backtracking and Gurobi default/heuristic settings. |
-| Benchmark outputs | Codex | Complete | `outputs/tables/benchmark_results.csv` and SVG figures. |
-| Single Markdown report | Codex | Complete | `outputs/reports/final_sudoku_heuristics_report.md`. |
-| Learning folder | Codex | Complete | `learning/` files explain the method quickly. |
+| Deliverable | Status | Notes |
+|---|---|---|
+| Working puzzle generator | Complete | Generates unique puzzles by difficulty target. |
+| Heuristic solver | Complete | Uses propagation, naked/hidden singles, naked pairs, and MRV search. |
+| Baseline solvers | Complete | Plain backtracking and Gurobi default/heuristic settings. |
+| Benchmark outputs | Complete | `outputs/tables/benchmark_results.csv` and SVG figures. |
+| Final Markdown report | Complete | `outputs/reports/final_sudoku_heuristics_report.md`. |
 
 ## Evidence Standard
 

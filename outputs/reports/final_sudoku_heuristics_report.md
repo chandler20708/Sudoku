@@ -1,8 +1,8 @@
-# Heuristics For Solving Sudoku: Literature, Method, Benchmark, And Learning Narrative
+# Heuristics For Solving Sudoku: Literature, Method, And Benchmark
 
 **Date:** 18 May 2026  
-**Project folder:** `/Users/chandler/Documents/Sudoku`  
-**Main purpose:** show practical understanding of heuristics by building and testing a Sudoku-solving system.
+**Repository:** [github.com/chandler20708/Sudoku](https://github.com/chandler20708/Sudoku)  
+**Main purpose:** demonstrate practical use of heuristics by building and testing a Sudoku-solving system.
 
 ## 1. Executive Summary
 
@@ -19,19 +19,19 @@ The proposed solution combines:
 
 On the generated benchmark set of 20 unique Sudoku puzzles, the proposed heuristic solved **20/20**. Plain recursive backtracking solved **17/20** under a 200,000-decision cap. Gurobi default and Gurobi with heuristic-focused parameters both solved **20/20**, but their Python/MIP modelling overhead was larger than the custom heuristic on this small puzzle size.
 
-The main learning result is straightforward: **heuristics help because they use problem structure before searching blindly**.
+The main result is straightforward: **heuristics help because they use problem structure before searching blindly**.
 
 ## 2. Research Question
 
 Can a transparent heuristic Sudoku solver demonstrate stronger practical optimisation understanding than a pure programming baseline, and how does it compare with a general-purpose MIP solver such as Gurobi?
 
-This is suitable for your current level because it sits between applied modelling and deeper algorithmic thinking. It does not require pretending to be a pure optimisation theorist, but it does require clear explanation of decision rules, constraints, search effort, and evaluation metrics.
+This project is positioned as an applied optimisation and algorithmic reasoning exercise. It focuses on clear explanation of decision rules, constraints, search effort, and evaluation metrics rather than on advanced mathematical proof.
 
 ## 3. Small Literature Review
 
 Peter Norvig's classic Sudoku solver frames the problem as constraint propagation plus search: reduce possible values first, then search only when needed ([Norvig](https://norvig.com/sudoku.html)). This is the strongest direct inspiration for the proposed solver.
 
-A recent comparative paper reports that heuristic constraint propagation can outperform recursive backtracking across difficulty levels, with larger speedups on harder puzzles ([arXiv 2507.09708](https://arxiv.org/abs/2507.09708)). This supports the project direction, although the present benchmark is smaller and should be treated as a learning demonstration.
+A recent comparative paper reports that heuristic constraint propagation can outperform recursive backtracking across difficulty levels, with larger speedups on harder puzzles ([arXiv 2507.09708](https://arxiv.org/abs/2507.09708)). This supports the project direction, although the present benchmark is smaller and should be treated as a compact empirical demonstration.
 
 McGuire, Tugemann and Civario's proof that no 16-clue Sudoku exists shows that Sudoku belongs to a serious combinatorial search family, not just a toy puzzle ([arXiv 1201.0749](https://arxiv.org/abs/1201.0749)). Their work is about puzzle existence rather than day-to-day solving, but it is useful evidence that naive search can become inadequate at scale.
 
@@ -186,7 +186,7 @@ So the honest claim is:
 
 ## 13. Limitations And Constraints
 
-This is a learning project, not a publishable large-scale algorithm paper.
+This is a compact project, not a publishable large-scale algorithm paper.
 
 Main limitations:
 
@@ -197,7 +197,7 @@ Main limitations:
 - the Gurobi heuristic comparison uses parameter settings, not a deeply tuned MIP start or variable hint strategy;
 - the proposed solver includes only a small subset of human Sudoku techniques.
 
-These limitations are acceptable for the stated purpose: showing that you understand how heuristics work and how to evaluate them honestly.
+These limitations are acceptable for the stated purpose: demonstrating how heuristics work and how they can be evaluated honestly.
 
 ## 14. Recommended Next Step
 

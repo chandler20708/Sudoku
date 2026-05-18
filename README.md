@@ -9,12 +9,10 @@ The project is intentionally small and readable. Its purpose is to show understa
 | Output | Location |
 |---|---|
 | Final report | `outputs/reports/final_sudoku_heuristics_report.md` |
-| Fast learning notes | `learning/` |
 | Solver and generator code | `src/sudoku_heuristics/` |
 | Benchmark dataset | `data/processed/generated_puzzles.csv` |
 | Benchmark results | `outputs/tables/benchmark_results.csv` |
 | Report figures | `outputs/figures/` |
-| Archived template setup | `scripts/template_archive/` |
 
 ## Project Structure
 
@@ -23,15 +21,13 @@ The project is intentionally small and readable. Its purpose is to show understa
 ├── data/processed/              # Generated Sudoku benchmark puzzles
 ├── docs/
 │   ├── planning/                # Project brief, methodology, assumptions
-│   └── research_notes/          # Literature notes and working progression
-├── learning/                    # Plain-English notes for quick understanding
+│   └── research_notes/          # Literature notes
 ├── outputs/
 │   ├── figures/                 # SVG charts and puzzle examples
 │   ├── reports/                 # Final single Markdown report
 │   └── tables/                  # Benchmark CSV
 ├── scripts/
-│   ├── run_benchmark.py         # Rebuild benchmark outputs
-│   └── template_archive/        # Original project-template setup files
+│   └── run_benchmark.py         # Rebuild benchmark outputs
 ├── src/sudoku_heuristics/       # Generator, solvers, benchmark, visuals
 └── tests/                       # Automated checks
 ```
@@ -89,6 +85,6 @@ The key interpretation is that the custom heuristic uses Sudoku structure to red
 
 ## Limitations
 
-This is a learning project, not a large-scale algorithm paper. The puzzle set is small and generated locally. Difficulty is approximated by clue count and observed effort, not by an external Sudoku rating engine.
+This is a compact empirical project, not a large-scale algorithm paper. The puzzle set is small and generated locally. Difficulty is approximated by clue count and observed effort, not by an external Sudoku rating engine.
 
 The next useful extension would be to test against a larger public puzzle corpus and add more advanced human-style techniques such as pointing pairs, box-line reduction, X-wing, and chains.
