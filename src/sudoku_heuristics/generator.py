@@ -155,8 +155,34 @@ def generate_puzzle(difficulty: str = "hard", seed: int | None = None) -> Puzzle
 
 
 def generate_dataset(per_difficulty: int = 10, seed: int = 20260518) -> list[PuzzleRecord]:
-    records: list[PuzzleRecord] = []
-    for difficulty in DIFFICULTY_CLUES:
-        for i in range(per_difficulty):
-            records.append(generate_puzzle(difficulty=difficulty, seed=seed + 1000 * len(records) + i))
-    return records
+    """Generate puzzles, then label difficulty by measured score quartiles.
+
+    Clue targets are used to create a varied candidate pool, but the final
+    benchmark label is assigned by practical difficulty score. This avoids the
+    common mistake of treating fewer givens as the only definition of harder.
+    """
+    target_profiles = list(DIFFICULTY_CLUES)
+    pool: list[PuzzleRecord] = []
+    total = per_difficulty * len(target_profiles)
+    for i in range(total):
+        target = target_profiles[i % len(target_profiles)]
+        pool.append(generate_puzzle(difficulty=target, seed=seed + 1000 * i + i))
+
+    ranked = sorted(pool, key=lambda record: (record.difficulty_score, record.clues))
+    labels = ["easy", "medium", "hard", "expert"]
+    relabelled: list[PuzzleRecord] = []
+    for label_index, label in enumerate(labels):
+        start = label_index * per_difficulty
+        end = start + per_difficulty
+        for j, record in enumerate(ranked[start:end], start=1):
+            relabelled.append(
+                PuzzleRecord(
+                    puzzle_id=f"{label}_{j:02d}",
+                    difficulty=label,
+                    puzzle=record.puzzle,
+                    solution=record.solution,
+                    clues=record.clues,
+                    difficulty_score=record.difficulty_score,
+                )
+            )
+    return relabelled

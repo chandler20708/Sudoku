@@ -23,8 +23,8 @@ The chosen method is a hybrid of human-readable Sudoku logic and computer-search
 - minimum remaining values branching;
 - depth-first search fallback.
 
-This was selected because it is understandable, implementable at MSc level, and strong enough to solve most generated puzzles. More advanced metaheuristics were not chosen as the main method because they are harder to explain to a non-technical reader and less directly connected to Sudoku logic.
+This was selected because it is understandable, compact enough to implement transparently, and strong enough to solve the generated benchmark puzzles. More advanced metaheuristics were not chosen as the main method because they are harder to explain to a non-technical reader and less directly connected to Sudoku logic.
 
 ## Evidence Gap
 
-The literature supports that heuristics help, but many studies compare algorithms on different puzzle sets or focus only on runtime. This project fills a learning-oriented gap: it explains the reasoning, implements a working solver, and compares it against both a programming baseline and an optimisation-solver baseline with metrics that can be understood by non-specialists.
+The literature supports that heuristics help, but many studies compare algorithms on different puzzle sets or focus only on runtime. This project fills an explanatory gap: it explains the reasoning, implements a working solver, includes invalid and ambiguous edge cases, and compares the method against both a programming baseline and an optimisation-solver baseline with metrics that can be understood by non-specialists.

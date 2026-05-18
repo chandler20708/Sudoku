@@ -6,7 +6,7 @@ Can a transparent heuristic solver solve generated Sudoku puzzles more efficient
 
 ## Descriptive Claims
 
-Sudoku can be represented as a grid of row, column, and box constraints. Empty cells can be represented by candidate sets. Difficulty can be approximated for this project by clue count and observed search effort.
+Sudoku can be represented as a grid of row, column, and box constraints. Empty cells can be represented by candidate sets. Difficulty is approximated using a measured score based on clue count, candidate ambiguity, and observed heuristic search effort.
 
 ## Predictive Claims
 
@@ -24,8 +24,9 @@ The selected heuristic is preferred for this project because it is transparent, 
 
 | Source | File / location | Observed variables | Limitations |
 |---|---|---|---|
-| Generated puzzle set | `data/processed/generated_puzzles.csv` | puzzle, solution, clue count, difficulty label | Generated data may not represent public puzzle corpora. |
-| Benchmark results | `outputs/tables/benchmark_results.csv` | solver, solved status, time, decisions, backtracks, propagation metrics | Small sample of 20 puzzles. |
+| Generated puzzle set | `data/processed/generated_puzzles.csv` | puzzle, solution, clue count, difficulty score, difficulty label | Generated data may not represent public puzzle corpora. |
+| Benchmark results | `outputs/tables/benchmark_results.csv` | solver, solved status, time, decisions, backtracks, propagation metrics | Small generated sample of 40 puzzles. |
+| Edge-case results | `outputs/tables/edge_case_results.csv` | invalid, ambiguous, very hard, and sparse stress-test outcomes | Edge cases are illustrative rather than exhaustive. |
 | Literature notes | `docs/research_notes/2026-05-18_literature_and_source_notes.md` | source summary and method rationale | Small-scale review, not systematic review. |
 
 ## Validation Plan
