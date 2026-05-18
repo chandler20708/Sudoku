@@ -12,7 +12,7 @@ from sudoku_heuristics.grid import (
     replace_cell,
     validate_partial,
 )
-from sudoku_heuristics.solvers import SolveStats, solve_heuristic_v2
+from sudoku_heuristics.models import SolveStats, solve_heuristic_v2
 
 
 @dataclass(frozen=True)

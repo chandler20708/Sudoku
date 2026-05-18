@@ -35,3 +35,7 @@ The project demonstrates how domain heuristics reduce search effort in a constra
 ## Evidence Standard
 
 Separate literature claims, implementation details, generated benchmark results, interpretation, and limitations. Report V2 honestly: it reduces search effort on expert generated puzzles but is not faster than V1 on this small benchmark.
+
+## Model file layout
+
+The solver implementations are separated under `src/sudoku_heuristics/models/`: recursive backtracking, V1, V2, Gurobi MIP, and the legacy V1 reference each have their own file. Shared candidate propagation is kept in `candidate_tools.py` to avoid duplicating fragile logic.

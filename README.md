@@ -30,7 +30,8 @@ The project is intentionally small and readable. Its purpose is to show understa
 │   └── tables/                  # Benchmark CSVs
 ├── scripts/
 │   └── run_benchmark.py         # Rebuild benchmark outputs; called by Makefile
-├── src/sudoku_heuristics/       # Generator, solvers, benchmark, visuals
+├── src/sudoku_heuristics/       # Generator, benchmark, visuals, model package
+│   └── models/                  # One Python file per solver model
 └── tests/                       # Automated checks
 ```
 
@@ -41,9 +42,23 @@ The project is intentionally small and readable. Its purpose is to show understa
 | `recursive_backtracking` | Fill the first empty cell, try values, and backtrack when stuck. |
 | `heuristic_v1_constraint_mrv` | Candidate propagation, naked/hidden singles, naked pairs, and minimum-remaining-values branching. |
 | `heuristic_v2_adaptive_locked_sets` | Proposed V2. It probes whether locked candidates and naked triples reduce the candidate space enough, then uses the advanced path only when useful. |
-| `heuristic_v1_legacy_reference` | Standalone copy of the original V1-style code kept in `src/sudoku_heuristics/heuristic_v1_legacy.py` for audit and learning reference; not part of the main benchmark. |
+| `heuristic_v1_legacy_reference` | Standalone copy of the original V1-style code kept in `src/sudoku_heuristics/models/heuristic_v1_legacy.py` for audit and learning reference; not part of the main benchmark. |
 | `gurobi_default` | Binary MIP formulation solved by Gurobi default settings. |
 | `gurobi_heuristics` | Same MIP formulation with heuristic-oriented Gurobi settings. |
+
+## Model File Layout
+
+| File | Purpose |
+|---|---|
+| `src/sudoku_heuristics/models/recursive_backtracking.py` | Plain programming baseline. |
+| `src/sudoku_heuristics/models/heuristic_v1.py` | Benchmarked V1 heuristic wrapper. |
+| `src/sudoku_heuristics/models/heuristic_v2.py` | Proposed V2 adaptive heuristic. |
+| `src/sudoku_heuristics/models/gurobi_mip.py` | Gurobi default and heuristic-mode MIP baseline. |
+| `src/sudoku_heuristics/models/heuristic_v1_legacy.py` | Standalone old V1-style reference implementation. |
+| `src/sudoku_heuristics/models/candidate_tools.py` | Shared candidate propagation/search helpers used by V1 and V2. |
+| `src/sudoku_heuristics/models/common.py` | Shared `SolveStats` result object. |
+
+`src/sudoku_heuristics/solvers.py` remains only as a compatibility re-export for older imports.
 
 ## Reproduce The Project
 

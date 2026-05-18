@@ -266,6 +266,11 @@ Key source files:
 
 - `src/sudoku_heuristics/generator.py`
 - `src/sudoku_heuristics/edge_cases.py`
-- `src/sudoku_heuristics/solvers.py`
+- `src/sudoku_heuristics/models/recursive_backtracking.py`
+- `src/sudoku_heuristics/models/heuristic_v1.py`
+- `src/sudoku_heuristics/models/heuristic_v2.py`
+- `src/sudoku_heuristics/models/gurobi_mip.py`
+- `src/sudoku_heuristics/models/heuristic_v1_legacy.py`
+- `src/sudoku_heuristics/solvers.py` compatibility re-export only
 - `src/sudoku_heuristics/benchmark.py`
 - `src/sudoku_heuristics/visuals.py`

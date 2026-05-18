@@ -1,7 +1,7 @@
 from sudoku_heuristics.edge_cases import AI_ESCARGOT, AMBIGUOUS_PUZZLE, CONTRADICTORY_PUZZLE
 from sudoku_heuristics.generator import classify_puzzle, count_solutions, generate_puzzle
 from sudoku_heuristics.grid import is_complete_solution
-from sudoku_heuristics.solvers import solve_heuristic_v2, solve_recursive_backtracking
+from sudoku_heuristics.models import solve_heuristic_v2, solve_recursive_backtracking
 
 
 def test_generator_creates_unique_solvable_puzzle() -> None:

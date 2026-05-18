@@ -12,7 +12,7 @@ from sudoku_heuristics.grid import (
     is_complete_solution,
     validate_partial,
 )
-from sudoku_heuristics.solvers import SolveStats
+from sudoku_heuristics.models.common import SolveStats
 
 Candidates = dict[Cell, set[int]]
 

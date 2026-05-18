@@ -5,7 +5,7 @@ from pathlib import Path
 
 from sudoku_heuristics.generator import PuzzleRecord, generate_dataset
 from sudoku_heuristics.grid import grid_to_line
-from sudoku_heuristics.solvers import (
+from sudoku_heuristics.models import (
     SolveStats,
     solve_gurobi,
     solve_heuristic_v1,

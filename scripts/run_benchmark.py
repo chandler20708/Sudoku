@@ -10,7 +10,7 @@ from sudoku_heuristics.benchmark import run_benchmark, write_benchmark, write_pu
 from sudoku_heuristics.edge_cases import AI_ESCARGOT, EDGE_CASES
 from sudoku_heuristics.generator import classify_puzzle
 from sudoku_heuristics.grid import parse_grid
-from sudoku_heuristics.solvers import (
+from sudoku_heuristics.models import (
     solve_gurobi,
     solve_heuristic_v1,
     solve_heuristic_v2,
