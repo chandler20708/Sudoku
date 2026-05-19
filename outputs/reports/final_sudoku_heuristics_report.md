@@ -107,7 +107,7 @@ V1 injects these rules through `V1_STRATEGIES`. V2 injects a larger strategy lis
 
 This means a future rule, such as X-wing, can be added as a new strategy class with an `apply(candidates, stats)` method, then injected into the relevant strategy tuple without rewriting the search loop.
 
-## 6. Difficulty Definition
+## 7. Difficulty Definition
 
 The project does not treat clue count as the whole definition of difficulty. Fewer clues often make a puzzle harder, but not always. Some puzzles with fewer clues are easy because the remaining givens create many forced moves. Some puzzles with more clues are harder because the search branches are less obvious.
 
@@ -118,18 +118,18 @@ The generated benchmark therefore uses two stages:
 
 The measured difficulty score combines number of empty cells, average candidate-set size, largest candidate-set size, V2 decisions, V2 backtracks, V2 depth, and a small propagation-effort term from candidate eliminations. This is still only a practical proxy, but it is more defensible than clue count alone.
 
-## 7. Baselines
+## 8. Baselines
 
 
 | Solver                           | What it represents                                            | Why included                                                                  |
 | -------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Plain recursive backtracking     | Basic programming search                                      | Shows what happens when search is mostly blind.                               |
 | Heuristic V1 propagation + MRV   | First transparent heuristic design                            | Shows the value of candidate propagation and most-constrained-cell branching. |
-| Proposed V2 adaptive locked sets | Final proposed method                                         | Tests whether advanced explainable heuristics reduce search effort further.   |
+| Proposed V2 adaptive locked sets | Final proposed method                                         | Shows how advanced candidate-update rules can be injected and evaluated.   |
 | Gurobi default                   | General-purpose binary MIP solver                             | Shows the optimisation-modelling baseline.                                    |
-| Gurobi heuristics                | Gurobi with`Heuristics=1.0`, `MIPFocus=1`, `NoRelHeurWork=20` | Tests whether heuristic-oriented Gurobi settings help on this formulation.    |
+| Gurobi heuristics                | Gurobi with `Heuristics=1.0`, `MIPFocus=1`, `NoRelHeurWork=20` | Tests whether heuristic-oriented Gurobi settings help on this formulation.    |
 
-## 8. Metrics
+## 9. Metrics
 
 
 | Metric                       | What it measures                                                   | Why it matters                                                   |
@@ -142,7 +142,7 @@ The measured difficulty score combines number of empty cells, average candidate-
 | Maximum depth                | Deepest search recursion level                                     | Gives a simple complexity proxy.                                 |
 | Solution count capped at 2   | Whether a puzzle has zero, one, or multiple completions            | Separates valid Sudoku puzzles from invalid or ambiguous cases.  |
 
-## 9. Benchmark Setup
+## 10. Benchmark Setup
 
 The main benchmark generated **40 unique puzzles**: 10 easy, 10 medium, 10 hard, and 10 expert.
 
@@ -156,7 +156,7 @@ Raw outputs:
 - `outputs/tables/benchmark_results.csv`
 - `outputs/tables/edge_case_results.csv`
 
-## 10. Main Results
+## 11. Main Results
 
 | Difficulty | Solver | Solved / 10 | Median difficulty score | Median time (ms) | Median decisions | Median backtracks |
 |---|---|---:|---:|---:|---:|---:|
@@ -187,7 +187,7 @@ Raw outputs:
 
 ![Search effort by difficulty](../figures/search_effort_by_difficulty.svg)
 
-## 11. Edge-Case Results
+## 12. Edge-Case Results
 
 
 | Case                    | What it tests                                     | Result                                                                                                                                                                 |
@@ -199,7 +199,7 @@ Raw outputs:
 
 ![Very hard edge case: AI Escargot](../figures/example_edge_ai_escargot.svg)
 
-## 12. Visual Puzzle Examples
+## 13. Visual Puzzle Examples
 
 The easy example is mostly solved by propagation. The heuristic has enough information to keep filling forced values.
 
@@ -209,7 +209,7 @@ The expert example has fewer forced moves and needs branching. This is where MRV
 
 ![Example expert puzzle](../figures/example_expert_puzzle.svg)
 
-## 13. Interpretation
+## 14. Interpretation
 
 The proposed heuristic performs well because it uses the structure of Sudoku. Instead of trying values in the first empty cell, it asks which cells are forced, which candidates can be removed, and where the smallest remaining uncertainty is.
 
@@ -221,7 +221,7 @@ Gurobi is reliable. It solves the binary MIP formulation cleanly. However, Sudok
 
 The Gurobi heuristic settings did not transform the result. That is not surprising: Sudoku's MIP formulation is already highly constrained, and the instance size is small. Gurobi's heuristic features are more meaningful on larger, harder MIP models where finding an early feasible solution is difficult.
 
-## 14. Computational Complexity Assessment
+## 15. Computational Complexity Assessment
 
 In worst-case theory, Sudoku solving is combinatorial. A naive solver may branch over many empty cells and many values, so the search space can grow exponentially.
 
@@ -238,7 +238,7 @@ So the honest claim is:
 
 > The heuristic does not change Sudoku into a polynomial-time problem, but it greatly reduces practical search effort on the benchmark set.
 
-## 15. Limitations And Constraints
+## 16. Limitations And Constraints
 
 This is a compact project, not a publishable large-scale algorithm paper.
 
@@ -254,7 +254,7 @@ Main limitations:
 
 These limitations are acceptable for the stated purpose: demonstrating how heuristics work and how they can be evaluated honestly.
 
-## 16. Reproducibility Notes
+## 17. Reproducibility Notes
 
 Run the benchmark with Make:
 

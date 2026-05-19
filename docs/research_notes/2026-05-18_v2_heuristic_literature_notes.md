@@ -39,10 +39,10 @@ This is a better research answer than simply adding more rules because it shows 
 
 - V2 solved 40/40 generated puzzles.
 - V1 also solved 40/40 generated puzzles.
-- On expert puzzles, V2 reduced median decisions from 2 to 1 and median backtracks from 1 to 0.
-- V2 was slower than V1 on the small benchmark because probing and advanced propagation add overhead.
+- After the strategy-pattern refactor, V2 still solved 40/40 generated puzzles but was slower than V1 on the small benchmark because strategy dispatch, probing, and advanced propagation add overhead.
+- The main V2 contribution is now architectural extensibility: candidate-update rules are separate injected strategies rather than hard-coded branches.
 - On AI Escargot, V2 selected core mode and solved with the same 19 decisions as V1, avoiding the worse advanced-only path.
 
 ## Honest Limitation
 
-V2 is better as a demonstration of adaptive heuristic thinking and search-effort reduction. It is not faster than V1 on this small generated dataset. The final report states this directly.
+V2 is better as a demonstration of adaptive heuristic architecture and future extensibility. It is not faster than V1 on this small generated dataset. The final report states this directly.
